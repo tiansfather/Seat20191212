@@ -1,0 +1,444 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <Version>1.0.0.0</Version>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>Master.Web</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>Master.Web</PackageId>
+    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
+    <MvcRazorCompileOnPublish>false</MvcRazorCompileOnPublish>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Plugins\**" />
+    <Compile Remove="Views\MES\**" />
+    <Compile Remove="Views\Storage\**" />
+    <Compile Remove="Views\WanTai\**" />
+    <Compile Remove="wwwroot\files\**" />
+    <Compile Remove="wwwroot\scripts\**" />
+    <Compile Remove="wwwroot\sheets\**" />
+    <Compile Remove="wwwroot\Temp\**" />
+    <Content Remove="Plugins\**" />
+    <Content Remove="Views\MES\**" />
+    <Content Remove="Views\Storage\**" />
+    <Content Remove="Views\WanTai\**" />
+    <Content Remove="wwwroot\files\**" />
+    <Content Remove="wwwroot\scripts\**" />
+    <Content Remove="wwwroot\sheets\**" />
+    <Content Remove="wwwroot\Temp\**" />
+    <EmbeddedResource Remove="Plugins\**" />
+    <EmbeddedResource Remove="Views\MES\**" />
+    <EmbeddedResource Remove="Views\Storage\**" />
+    <EmbeddedResource Remove="Views\WanTai\**" />
+    <EmbeddedResource Remove="wwwroot\files\**" />
+    <EmbeddedResource Remove="wwwroot\scripts\**" />
+    <EmbeddedResource Remove="wwwroot\sheets\**" />
+    <EmbeddedResource Remove="wwwroot\Temp\**" />
+    <None Remove="Plugins\**" />
+    <None Remove="Views\MES\**" />
+    <None Remove="Views\Storage\**" />
+    <None Remove="Views\WanTai\**" />
+    <None Remove="wwwroot\files\**" />
+    <None Remove="wwwroot\scripts\**" />
+    <None Remove="wwwroot\sheets\**" />
+    <None Remove="wwwroot\Temp\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="menu.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Views\Dictionary\Edit.cshtml" />
+    <None Include="Views\Dictionary\Index.cshtml" />
+    <None Include="Views\Logs\Login.cshtml" />
+    <None Include="Views\Logs\Operations.cshtml" />
+    <None Include="Views\Logs\System.cshtml" />
+    <None Include="Views\Logs\Tip.cshtml" />
+    <None Include="Views\ModuleInfo\Button.cshtml" />
+    <None Include="Views\ModuleInfo\Column.cshtml" />
+    <None Include="Views\ModuleInfo\Edit.cshtml" />
+    <None Include="Views\ModuleInfo\Index.cshtml" />
+    <None Include="wwwroot\assets\layuiadmin\config.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\console\prograss.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\console\top-card.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\console\top-search.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\content\comment.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\content\list.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\content\tags.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\forum\list.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\forum\replys.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\layer\photos.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\layim\getList.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\layim\getMembers.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\mall\order.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\menu.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\menu1.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\message\all.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\message\detail.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\message\direct.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\message\new.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\message\notice.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\table\demo.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\table\demo2.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\table\user.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\table\user30.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\upload\demo.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\useradmin\mangadmin.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\useradmin\role.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\useradmin\webuser.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\user\forget.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\user\login.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\user\logout.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\user\reg.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\user\resetpass.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\user\session.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\user\sms.js" />
+    <None Include="wwwroot\assets\layuiadmin\json\workorder\demo.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\font\fontawesome-webfont.svg" />
+    <None Include="wwwroot\assets\layuiadmin\layui\font\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\assets\layuiadmin\layui\font\iconfont.svg" />
+    <None Include="wwwroot\assets\layuiadmin\layui\font\strawberryicon.svg" />
+    <None Include="wwwroot\assets\layuiadmin\layui\layui.all.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\layui.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\carousel.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\code.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\colorpicker.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\element.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\flow.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\form.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\jquery.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\laydate.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\layedit.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\layer.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\layim.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\laypage.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\laytpl.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\mobile.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\rate.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\slider.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\table.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\tree.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\upload.js" />
+    <None Include="wwwroot\assets\layuiadmin\layui\lay\modules\util.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\admin.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\authtree.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\droptree.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\echarts.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\echartsTheme.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\flow\config.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\flow\fonts\iconflow.svg" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\flow\fonts\iconfont.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\flow\GooFlow.export.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\flow\gooflow.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\flow\GooFlow.print.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\flow\GooFunc.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\formselects\formSelects-v3.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\formselects\formSelects-v4.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\formselects\formSelects-v4.min.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\extend\ztree\ztree.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\index.js" />
+    <None Include="wwwroot\assets\layuiadmin\lib\view.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\common.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\console.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\contlist.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\forum.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\im.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\message.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\sample.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\senior.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\set.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\user.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\useradmin.js" />
+    <None Include="wwwroot\assets\layuiadmin\modules\workorder.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\comment\comment.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\comment\continuecomment.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\dialog\dialog.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\display\autorefresh.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\display\fullscreen.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\display\panel.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\display\placeholder.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\display\rulers.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\edit\closebrackets.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\edit\closetag.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\edit\continuelist.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\edit\matchbrackets.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\edit\matchtags.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\edit\trailingspace.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\fold\brace-fold.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\fold\comment-fold.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\fold\foldcode.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\fold\foldgutter.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\fold\indent-fold.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\fold\markdown-fold.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\fold\xml-fold.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\hint\anyword-hint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\hint\css-hint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\hint\html-hint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\hint\javascript-hint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\hint\show-hint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\hint\sql-hint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\hint\xml-hint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\lint\coffeescript-lint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\lint\css-lint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\lint\html-lint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\lint\javascript-lint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\lint\json-lint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\lint\lint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\lint\yaml-lint.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\merge\merge.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\mode\loadmode.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\mode\multiplex.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\mode\multiplex_test.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\mode\overlay.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\mode\simple.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\runmode\colorize.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\runmode\runmode-standalone.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\runmode\runmode.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\runmode\runmode.node.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\scroll\annotatescrollbar.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\scroll\scrollpastend.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\scroll\simplescrollbars.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\search\jump-to-line.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\search\match-highlighter.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\search\matchesonscrollbar.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\search\search.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\search\searchcursor.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\selection\active-line.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\selection\mark-selection.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\selection\selection-pointer.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\tern\tern.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\tern\worker.js" />
+    <None Include="wwwroot\lib\codemirror-minified\addon\wrap\hardwrap.js" />
+    <None Include="wwwroot\lib\codemirror-minified\AUTHORS" />
+    <None Include="wwwroot\lib\codemirror-minified\CHANGELOG.md" />
+    <None Include="wwwroot\lib\codemirror-minified\gulpfile.js" />
+    <None Include="wwwroot\lib\codemirror-minified\keymap\emacs.js" />
+    <None Include="wwwroot\lib\codemirror-minified\keymap\sublime.js" />
+    <None Include="wwwroot\lib\codemirror-minified\keymap\vim.js" />
+    <None Include="wwwroot\lib\codemirror-minified\lib\codemirror.js" />
+    <None Include="wwwroot\lib\codemirror-minified\LICENSE" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\apl\apl.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\asciiarmor\asciiarmor.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\asn.1\asn.1.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\asterisk\asterisk.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\brainfuck\brainfuck.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\clike\clike.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\clojure\clojure.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\cmake\cmake.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\cobol\cobol.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\coffeescript\coffeescript.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\commonlisp\commonlisp.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\crystal\crystal.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\css\css.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\cypher\cypher.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\dart\dart.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\diff\diff.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\django\django.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\dockerfile\dockerfile.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\dtd\dtd.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\dylan\dylan.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\d\d.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\ebnf\ebnf.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\ecl\ecl.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\eiffel\eiffel.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\elm\elm.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\erlang\erlang.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\factor\factor.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\fcl\fcl.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\forth\forth.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\fortran\fortran.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\gas\gas.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\gfm\gfm.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\gherkin\gherkin.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\go\go.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\groovy\groovy.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\haml\haml.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\handlebars\handlebars.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\haskell-literate\haskell-literate.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\haskell\haskell.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\haxe\haxe.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\htmlembedded\htmlembedded.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\htmlmixed\htmlmixed.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\http\http.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\idl\idl.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\javascript\javascript.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\jinja2\jinja2.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\jsx\jsx.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\julia\julia.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\livescript\livescript.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\lua\lua.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\markdown\markdown.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\mathematica\mathematica.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\mbox\mbox.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\meta.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\mirc\mirc.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\mllike\mllike.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\modelica\modelica.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\mscgen\mscgen.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\mumps\mumps.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\nginx\nginx.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\nsis\nsis.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\ntriples\ntriples.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\octave\octave.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\oz\oz.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\pascal\pascal.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\pegjs\pegjs.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\perl\perl.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\php\php.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\pig\pig.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\powershell\powershell.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\properties\properties.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\protobuf\protobuf.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\pug\pug.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\puppet\puppet.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\python\python.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\q\q.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\rpm\rpm.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\rst\rst.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\ruby\ruby.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\rust\rust.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\r\r.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\sass\sass.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\sas\sas.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\scheme\scheme.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\shell\shell.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\sieve\sieve.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\slim\slim.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\smalltalk\smalltalk.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\smarty\smarty.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\solr\solr.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\soy\soy.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\sparql\sparql.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\spreadsheet\spreadsheet.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\sql\sql.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\stex\stex.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\stylus\stylus.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\swift\swift.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\tcl\tcl.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\textile\textile.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\tiddlywiki\tiddlywiki.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\tiki\tiki.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\toml\toml.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\tornado\tornado.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\troff\troff.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\ttcn-cfg\ttcn-cfg.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\ttcn\ttcn.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\turtle\turtle.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\twig\twig.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\vbscript\vbscript.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\vb\vb.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\velocity\velocity.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\verilog\verilog.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\vhdl\vhdl.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\vue\vue.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\webidl\webidl.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\xml\xml.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\xquery\xquery.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\yacas\yacas.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\yaml-frontmatter\yaml-frontmatter.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\yaml\yaml.js" />
+    <None Include="wwwroot\lib\codemirror-minified\mode\z80\z80.js" />
+    <None Include="wwwroot\lib\codemirror-minified\README.md" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_auto_scheduling.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_critical_path.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_csp.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_fullscreen.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_grouping.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_keyboard_navigation.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_marker.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_multiselect.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_quick_info.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_smart_rendering.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_tooltip.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\ext\dhtmlxgantt_undo.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\locale\locale.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\locale\locale_cn.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\skins\dhtmlxgantt_broadway.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\skins\dhtmlxgantt_contrast_black.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\skins\dhtmlxgantt_contrast_white.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\skins\dhtmlxgantt_material.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\skins\dhtmlxgantt_meadow.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\skins\dhtmlxgantt_skyblue.js" />
+    <None Include="wwwroot\lib\dhtmlx\gantt\skins\dhtmlxgantt_terrace.js" />
+    <None Include="wwwroot\lib\dropdowntree\js\dropDownTool.js" />
+    <None Include="wwwroot\lib\dropdowntree\js\utils.js" />
+    <None Include="wwwroot\lib\jqueryWeUI\js\city-picker.js" />
+    <None Include="wwwroot\lib\jqueryWeUI\js\city-picker.min.js" />
+    <None Include="wwwroot\lib\jqueryWeUI\js\jquery-weui.js" />
+    <None Include="wwwroot\lib\jqueryWeUI\js\jquery-weui.min.js" />
+    <None Include="wwwroot\lib\jqueryWeUI\js\swiper.js" />
+    <None Include="wwwroot\lib\jqueryWeUI\js\swiper.min.js" />
+    <None Include="wwwroot\lib\jqueryWeUI\lib\fastclick.js" />
+    <None Include="wwwroot\lib\jqueryWeUI\lib\jquery-2.1.4.js" />
+    <None Include="wwwroot\lib\jqueryWeUI\lib\zepto.js" />
+    <None Include="wwwroot\lib\pace\pace.min.js" />
+    <None Include="wwwroot\lib\signalr-client\signalr.min.js" />
+    <None Include="wwwroot\lib\signalr-client\signalr.min.js.map" />
+    <None Include="wwwroot\lib\spreadjs\interop\gc.spread.excelio.12.0.0.min.js" />
+    <None Include="wwwroot\lib\spreadjs\interop\gc.spread.sheets.migration.12.0.0.min.js" />
+    <None Update="chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+    <None Update="wwwroot\**\*;Views\**\*">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Master.Application\Master.Application.csproj" />
+    <ProjectReference Include="..\Master.EntityFrameworkCore\Master.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Master.Web.Core\Master.Web.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="2.10.0" />
+    <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+    <PackageReference Include="Castle.LoggingFacility.MsLogging" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.2">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Castle.Core" Version="4.3.1" />
+    <PackageReference Include="Abp.AspNetCore" Version="4.5.0" />
+    <PackageReference Include="Abp.Castle.Log4Net" Version="4.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="menu.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Views\Home\Default.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="wwwroot\lib\swiper\" />
+  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties bundleconfig_1json__JSONSchema="" appsettings_1json__JSONSchema="http://json.schemastore.org/appsscript" /></VisualStudio></ProjectExtensions>
+</Project>

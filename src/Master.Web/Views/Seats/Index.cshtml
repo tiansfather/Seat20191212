@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="layui-fluid" id="LAY-app-message">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form layui-form-pane" onsubmit="return doSearch();">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <button class="layui-btn  " buttonname="@L("添加")" type="button" onclick="addSeat()">@L("添加")</button>
+                        <button class="layui-btn  layui-btn-danger" type="button" buttonname="删除" modulekey="Seat" params="" lay-event="Dimission" confirmmsg="确认删除" buttonactiontype="Ajax" buttonactionurl="abp.services.app.seat.deleteEntity" onclick="func.callModuleButtonEvent()">删除</button>
+                    </div>
+                </div>
+            </form>
+
+
+            <table autoevent="1" id="Seat" lay-filter="Seat" class="layui-table " lay-data="{cellMinWidth:'80',height:'full-170', url:'/api/services/app/Seat/GetPageResult', page:true, id:'Seat', even: true,done:config.onTableDone,initSort:{field:'Id',type:'asc'}}" @*lay-size="sm" *@>
+                <thead>
+                    <tr>
+                        <th lay-data="{type:'checkbox'}"></th>
+                        <th lay-data="{field:'seatNumber'}">@L("序号")</th>
+                        <th lay-data="{field:'isActive',templet:'#switchTpl' }">@L("状态")</th>
+                        <th lay-data="{field:'remarks',edit:'text'}">@L("备注")</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+    </div>
+</div>
+@section scripts{
+    <script type="text/html" id="switchTpl">
+        <input type="checkbox" name="isActive" value="{{d.id}}" lay-skin="switch" lay-text="有效|无效" lay-filter="isActive" {{ d.isActive ? 'checked' : '' }}>
+    </script>
+    <script>
+        config.ready = function () {
+            var element = layui.element,
+                table = layui.table;
+            layui.form.on('switch(isActive)', function (obj) {
+                func.runAsync(abp.services.app.seat.setActive(this.value, obj.elem.checked).done(function () {
+                    layer.msg("提交成功");
+                }))
+            });
+            layui.table.on('edit(Seat)', function (obj) {
+                var value = obj.value //得到修改后的值
+                    , data = obj.data //得到所在行所有键值
+                    , field = obj.field; //得到字段
+                //layer.msg('[ID: ' + data.id + '] ' + field + ' 字段更改为：' + value);
+                
+                abp.message.confirm(L('确认修改?'), function () {
+                    func.runAsync(abp.services.app.seat.setRemarks(data.id,  value, {
+                        error: function () {
+                            layui.table.reload('Company');
+                        }
+                    }).done(function () {
+                        layer.msg('更新成功');
+                    }));
+                })
+
+            });
+
+            config.refresh();
+
+
+        }
+        config.onTableDone = function () {
+
+        }
+        config.refresh = function () {
+
+        }
+        function addSeat() {
+            layer.prompt({ title: '@L("请输入座位号")', formType: 0 }, function (text, index) {
+                 layer.close(index);
+                if (isNaN(text)) {
+                    abp.message.error("请输入数字");
+                    return;
+                }
+                func.runAsync(abp.services.app.seat.add(text).done(function (data) {
+                    layer.msg('@L("提交成功")');
+                    doSearch();
+
+                }));
+            });
+
+        }
+
+        function doSearch() {
+            var where = {where:'1=1'};
+
+            layui.table.reload('Seat', {
+                where: where
+
+            })
+
+            return false;
+        }
+    </script>
+}
