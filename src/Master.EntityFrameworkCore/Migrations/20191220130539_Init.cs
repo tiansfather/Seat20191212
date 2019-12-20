@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Master.Migrations
@@ -13,7 +12,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     TenantId = table.Column<int>(nullable: true),
                     UserId = table.Column<long>(nullable: true),
                     ServiceName = table.Column<string>(nullable: true),
@@ -39,7 +38,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -56,11 +55,47 @@ namespace Master.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Seat",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<long>(nullable: true),
+                    SeatNumber = table.Column<int>(nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    Remarks = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Seat", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SeatOrder",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<long>(nullable: true),
+                    SeatNumber = table.Column<int>(nullable: false),
+                    OrderOpenId = table.Column<string>(nullable: true),
+                    Year = table.Column<int>(nullable: false),
+                    Month = table.Column<int>(nullable: false),
+                    Day = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SeatOrder", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Settings",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -80,7 +115,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     TenantId = table.Column<int>(nullable: true),
                     TenancyName = table.Column<string>(nullable: true),
                     UserId = table.Column<long>(nullable: true),
@@ -101,7 +136,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     TenantId = table.Column<int>(nullable: true),
@@ -126,7 +161,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -157,7 +192,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -216,7 +251,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     DictionaryName = table.Column<string>(nullable: true),
@@ -259,7 +294,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -307,7 +342,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -365,7 +400,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -414,7 +449,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     TenantId = table.Column<int>(nullable: true),
                     UserId = table.Column<long>(nullable: false),
                     LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
@@ -436,7 +471,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     TenantId = table.Column<int>(nullable: true),
@@ -465,7 +500,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -521,7 +556,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -589,7 +624,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
@@ -636,7 +671,7 @@ namespace Master.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Sqlite:Autoincrement", true),
                     CreationTime = table.Column<DateTime>(nullable: false),
                     CreatorUserId = table.Column<long>(nullable: true),
                     TenantId = table.Column<int>(nullable: true),
@@ -971,6 +1006,12 @@ namespace Master.Migrations
 
             migrationBuilder.DropTable(
                 name: "Permissions");
+
+            migrationBuilder.DropTable(
+                name: "Seat");
+
+            migrationBuilder.DropTable(
+                name: "SeatOrder");
 
             migrationBuilder.DropTable(
                 name: "Settings");

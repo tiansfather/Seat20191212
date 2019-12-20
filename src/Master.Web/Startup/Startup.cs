@@ -78,28 +78,6 @@ namespace Master.Web.Startup
             });
             //配置jwt
             AuthConfigurer.Configure(services, _appConfiguration);
-            //配置hangfire
-            services.AddHangfire(config =>
-            {
-                config.UseStorage(new MySqlStorage(_appConfiguration.GetConnectionString("HangFire")));//注意，这里使用的是mysql
-            });
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new Info { Title = "Master API", Version = "v1" });
-                options.DocInclusionPredicate((docName, description) => true);
-                SwaggerDocHelper.ConfigXmlCommentsPath(options);
-                options.CustomSchemaIds(x => x.FullName);
-                // Define the BearerAuth scheme that's in use
-                //options.AddSecurityDefinition("bearerAuth", new ApiKeyScheme()
-                //{
-                //    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                //    Name = "Authorization",
-                //    In = "header",
-                //    Type = "apiKey"
-                //});
-                ////Assign scope requirements to operations based on AuthorizeAttribute
-                //options.OperationFilter<SecurityRequirementsOperationFilter>();
-            });
 
             /*
              * CO2NET 是从 Senparc.Weixin 分离的底层公共基础模块，经过了长达 6 年的迭代优化，稳定可靠。
@@ -160,18 +138,6 @@ namespace Master.Web.Startup
 
             ApplicationConfigurer.Configure(app);
 
-            app.UseHangfireServer();
-            app.UseHangfireDashboard("/masterhangfire", new DashboardOptions
-            {
-                Authorization = new[] { new AbpHangfireAuthorizationFilter() }
-            });
-
-            app.UseSwagger();
-            // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
-            app.UseSwaggerUI(options =>
-            {                
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Master API V1");
-            }); // URL: /swagger
 
             app.UseMvc(routes =>
             {

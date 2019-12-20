@@ -552,6 +552,14 @@ namespace Master.Controllers
             return Json(AbpSession.ToUserIdentifier());
         }
 
+        [WeUserFilter]
+        [WeMustSubscribeFilter]
+        public ActionResult Seat()
+        {
+            var openId = WeiXinHelper.GetWeiXinUserInfo().openid;
+            ViewBag.openId = openId;
+            return View();
+        }
 
     }
 }

@@ -63,7 +63,6 @@
     <script src="~/scripts/GetAll.js?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
     @*<script src="~/AbpServiceProxies/GetAll?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>*@
     <script src="~/AbpScripts/GetScripts?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
-    @await Html.PartialAsync("/Views/Shared/_WeUICommon.cshtml")
     @RenderSection("scripts", required: false)
     <script>
         layui.use(['layer'], function () {

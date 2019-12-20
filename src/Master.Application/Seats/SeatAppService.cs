@@ -1,4 +1,5 @@
-﻿using Abp.UI;
+﻿using Abp.Authorization;
+using Abp.UI;
 using Master.Dto;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Master.Seats
 {
+    [AbpAuthorize]
     public class SeatAppService:MasterAppServiceBase<Seat,int>
     {
         protected override async Task<IQueryable<Seat>> GetQueryable(RequestPageDto request)

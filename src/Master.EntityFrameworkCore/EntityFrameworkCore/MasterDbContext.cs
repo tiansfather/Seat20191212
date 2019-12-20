@@ -54,6 +54,7 @@ namespace Master.EntityFrameworkCore
         public virtual DbSet<ColumnInfo> ColumnInfo { get; set; }
         public virtual DbSet<Dictionary> Dictionary { get; set; }
         public virtual DbSet<Seat> Seat { get; set; }
+        public virtual DbSet<SeatOrder> SeatOrder { get; set; }
         #endregion
 
         public MasterDbContext(DbContextOptions<MasterDbContext> options) 
@@ -62,28 +63,6 @@ namespace Master.EntityFrameworkCore
 
         }
 
-        #region DbFunction
-        [DbFunction(FunctionName = "json_extract")]
-        public static string GetJsonValueString(JsonObject<IDictionary<string, object>> obj, string PropertyPath)
-        {
-            return "";
-        }
-        [DbFunction(FunctionName = "json_extract")]
-        public static decimal? GetJsonValueNumber(JsonObject<IDictionary<string, object>> obj, string PropertyPath)
-        {
-            return 0;
-        }
-        [DbFunction(FunctionName = "json_extract")]
-        public static DateTime GetJsonValueDate(JsonObject<IDictionary<string, object>> obj, string PropertyPath)
-        {
-            return DateTime.Now;
-        }
-        [DbFunction(FunctionName = "json_extract")]
-        public static bool GetJsonValueBool(JsonObject<IDictionary<string, object>> obj, string PropertyPath)
-        {
-            return true;
-        }
-        #endregion
 
         protected override Expression<Func<TEntity, bool>> CreateFilterExpression<TEntity>()
         {

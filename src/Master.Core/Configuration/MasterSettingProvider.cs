@@ -26,7 +26,8 @@ namespace Master.Configuration
             {
                 menuSettingDefinition,
                 new SettingDefinition(SettingNames.SoftTitle, "Sartorius ",L("系统标题"),group, scopes: SettingScopes.Application , isVisibleToClients: true),
-                new SettingDefinition(SettingNames.CodeSetting, "Sartorius ",L("识别码"),group, scopes: SettingScopes.Application , isVisibleToClients: true),
+               new SettingDefinition(SettingNames.CodeSetting, "Sartorius",L("识别码"),group, scopes: SettingScopes.Tenant , isVisibleToClients: true
+               ,customData:new SettingUIInfo(){ColumnType=Module.ColumnTypes.Text,Renderer="lay-code"}),
 
             };
         }

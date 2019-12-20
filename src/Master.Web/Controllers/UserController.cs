@@ -25,35 +25,8 @@ namespace Master.Web.Controllers
         public RoleManager RoleManager { get; set; }
         public MasterConfiguration MasterConfiguration { get; set; }
 
-        public ActionResult Test2()
-        {
-            var _valueExp = Expression.Constant("11111");
-            var _constExp = Expression.Constant("$.TEST", typeof(string));
-            var p=Expression.Parameter(typeof(User), "x");
-            MemberExpression member = Expression.PropertyOrField(p, "Property");
-            var expRes = Expression.Call( typeof(MasterDbContext).GetMethod("GetJsonValueString"),member, _constExp);
-            var exp = Expression.Equal(expRes, _valueExp);
-            var lamda=Expression.Lambda(expRes, p);
-
-            var dlamda = DynamicExpressionParser.ParseLambda(typeof(User), typeof(bool), "@0(it)==\"11111\"", lamda);
-
-            var c = UserManager.Repository.GetAll().Where("@0(it)", dlamda).Count();
-            var c2 = UserManager.Repository.GetAll().Where(o => MasterDbContext.GetJsonValueString(o.Property, "$.TEST") == "11111").Count();
-            return Content(c.ToString()+"-"+c2.ToString());
-        }
-
-        public IActionResult Test()
-        {
-            var types = TypeFinder.Find(o => o.FullName == "Master.WanTai.WanTaiProject");
-            var type = types[0];
-            AppDomain.CurrentDomain.Load(type.Assembly.GetName());
-            var op = ScriptOptions.Default;
-            op = op.WithImports(new string[] { "System", "System.Math", "Master.EntityFrameworkCore" });
-            op = op.WithReferences(typeof(ModuleInfo).Assembly, typeof(MasterDbContext).Assembly);
-            var func = ScriptRunner.EvaluateScript<int>("Id", op,Activator.CreateInstance(type)).Result;
-
-            return Content(func.ToString());
-        }
+       
+       
 
         public IActionResult Index()
         {

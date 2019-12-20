@@ -9,16 +9,14 @@ namespace Master.EntityFrameworkCore
 {
     public static class DbContextOptionsConfigurer
     {
-        
-        public static readonly LoggerFactory MyLoggerFactory
-    = new LoggerFactory(new[] { new DebugLoggerProvider((categoryName, logLevel) => (logLevel == LogLevel.Information) && (categoryName == DbLoggerCategory.Database.Command.Name)) });
         public static void Configure<TDbContext>(
             DbContextOptionsBuilder<TDbContext> dbContextOptions, 
             string connectionString
             )
             where TDbContext : AbpDbContext
         {
-            dbContextOptions.UseLazyLoadingProxies().UseMySql(connectionString).ConfigureWarnings(warnnngs => { warnnngs.Log(CoreEventId.LazyLoadOnDisposedContextWarning); warnnngs.Log(CoreEventId.DetachedLazyLoadingWarning); })
+            dbContextOptions.UseSqlite(connectionString);
+            //dbContextOptions.UseLazyLoadingProxies().UseMySql(connectionString).ConfigureWarnings(warnnngs => { warnnngs.Log(CoreEventId.LazyLoadOnDisposedContextWarning); warnnngs.Log(CoreEventId.DetachedLazyLoadingWarning); })
                 //.UseLoggerFactory(MyLoggerFactory)
                 ;
             //builder.UseSqlServer(connectionString,b=>b.UseRowNumberForPaging());
@@ -26,7 +24,8 @@ namespace Master.EntityFrameworkCore
         public static void Configure<TDbContext>(DbContextOptionsBuilder<TDbContext> dbContextOptions, DbConnection connection)
             where TDbContext : AbpDbContext
         {
-            dbContextOptions.UseLazyLoadingProxies().UseMySql(connection).ConfigureWarnings(warnnngs => { warnnngs.Log(CoreEventId.LazyLoadOnDisposedContextWarning); warnnngs.Log(CoreEventId.DetachedLazyLoadingWarning); })
+            dbContextOptions.UseSqlite(connection);
+            //dbContextOptions.UseLazyLoadingProxies().UseMySql(connection).ConfigureWarnings(warnnngs => { warnnngs.Log(CoreEventId.LazyLoadOnDisposedContextWarning); warnnngs.Log(CoreEventId.DetachedLazyLoadingWarning); })
                 //.UseLoggerFactory(MyLoggerFactory)
                 ;
             //builder.UseSqlServer(connection, b => b.UseRowNumberForPaging());

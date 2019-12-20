@@ -495,21 +495,21 @@ namespace Master.Search
         /// <returns></returns>
         private string GetDbFunctionName(ColumnTypes columnType)
         {
-            string result;
+            string result="";
             switch (columnType)
             {
-                case ColumnTypes.DateTime:
-                    result = nameof(MasterDbContext.GetJsonValueDate);
-                    break;
-                case ColumnTypes.Number:
-                    result = nameof(MasterDbContext.GetJsonValueNumber);
-                    break;
-                case ColumnTypes.Switch:
-                    result = nameof(MasterDbContext.GetJsonValueBool);
-                    break;
-                default:
-                    result = nameof(MasterDbContext.GetJsonValueString);
-                    break;
+                //case ColumnTypes.DateTime:
+                //    result = nameof(MasterDbContext.GetJsonValueDate);
+                //    break;
+                //case ColumnTypes.Number:
+                //    result = nameof(MasterDbContext.GetJsonValueNumber);
+                //    break;
+                //case ColumnTypes.Switch:
+                //    result = nameof(MasterDbContext.GetJsonValueBool);
+                //    break;
+                //default:
+                //    result = nameof(MasterDbContext.GetJsonValueString);
+                //    break;
             }
             return result;
         }

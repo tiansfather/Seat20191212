@@ -20,6 +20,7 @@
     <None Remove="Views\WeiXin\ScanUploadCallback.cshtml" />
     <None Remove="Views\WeiXin\ScanUserInfo.cshtml" />
     <None Remove="Views\WeiXin\ScanUserInfoCallback.cshtml" />
+    <None Remove="Views\WeiXin\Seat.cshtml" />
     <None Remove="Views\WeiXin\Success.cshtml" />
   </ItemGroup>
 
@@ -45,6 +46,10 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WeiXin\BindLoginCallback.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WeiXin\Seat.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </EmbeddedResource>

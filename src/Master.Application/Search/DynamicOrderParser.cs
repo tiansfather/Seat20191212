@@ -23,7 +23,7 @@ namespace Master.Search
             }
             if (column.IsPropertyColumn)
             {
-                query = (query as IQueryable<TEntity>).OrderBy(o => MasterDbContext.GetJsonValueString(o.Property, $"$.{column.ColumnKey}"));
+                //query = (query as IQueryable<TEntity>).OrderBy(o => MasterDbContext.GetJsonValueString(o.Property, $"$.{column.ColumnKey}"));
             }
             else
             {

@@ -1,0 +1,158 @@
+﻿@section styles{
+    <style>
+        body {
+            line-height: 24px;
+            font: 14px Helvetica Neue, Helvetica, PingFang SC, Tahoma, Arial, sans-serif;
+        }
+
+        blockquote,
+        body,
+        button,
+        dd,
+        div,
+        dl,
+        dt,
+        form,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        input,
+        li,
+        ol,
+        p,
+        pre,
+        td,
+        textarea,
+        th,
+        ul {
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .header-text {
+            line-height: 2;
+            margin: 8px;
+            font-size: 15px;
+        }
+
+            .header-text > span {
+                float: right;
+            }
+
+        li {
+            list-style: none;
+        }
+
+        .task-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100vw;
+            padding: 5px;
+        }
+
+        .task {
+            background: #f2f2f2;
+            text-align: center;
+            width: calc(50% - 10px);
+            height: calc(50vw - 15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 5px;
+            flex-flow: column;
+        }
+        .task_p{
+            font-size:30px;
+        }
+        .task_des{
+            font-size:18px;
+        }
+        .task.free {
+            background: rgba(255, 184, 28, 1)
+        }
+            .task.occupy {
+                background: rgba(204, 204, 204, 1)
+            }
+            .task.mine {
+                background: rgba(0, 204, 102, 1);
+            }
+    </style>
+}
+    <div id="app">
+        <header>
+            <p class="header-text">
+                <b>Station booking</b>
+                <span>@DateTime.Now.ToString("yyyy-MM-dd")</span>
+            </p>
+        </header>
+        <hr/>
+        <main>
+            <ul class="task-wrap">
+                <li v-for="(item,index) in seats" :key="seatNumber" :class="item.class" class="task" @@click="doBook(item)">
+                    <p class="task_p">{{item.seatNumber}}</p>
+                    <p class="task_des">{{item.des}}</p>
+                </li>
+            </ul>
+        </main>
+    </div>
+@section scripts{
+    <script>
+        var app=new Vue({
+            el: "#app",
+            data() {
+                return {
+                    seats: [],
+                    openId:'123'
+                }
+            },
+            methods: {
+                doBook(seat) {
+                    if (!this.openId) {
+                        abp.message.error("微信信息错误");
+                        return;
+                    }
+                    if (seat.class == "free") {                        
+                        abp.message.confirm("确认定下此座位?", function () {
+                            func.runAsync(abp.services.app.seatOrder.order(seat.seatNumber, app.openId).done(res => {
+                                layer.msg('提交成功')
+                                location.reload();
+                            }))
+                        })
+                    } else if (seat.class == "mine") {
+                        abp.message.confirm("确认取消此座位?", function () {
+                            func.runAsync(abp.services.app.seatOrder.cancel(seat.seatNumber, app.openId).done(res => {
+                                layer.msg('提交成功')
+                                location.reload();
+                            }))
+                        })
+                    }
+                }
+            },
+            mounted() {
+                abp.services.app.seatOrder.getSeatsStatus(this.openId).done(res => {
+                    this.seats = res;
+                    this.seats.forEach(seat => {
+                        if (!seat.orderOpenId) {
+                            seat.class = "free";
+                            seat.des = "Free";
+                        } else if (seat.orderOpenId == this.openId) {
+                            seat.class = "mine";
+                            seat.des = "My Booking";
+                        } else {
+                            seat.class = "occupy";
+                            seat.des = "Occupied";
+                        }
+                    })
+                });
+            }
+        })
+    </script>
+}

@@ -2,12 +2,15 @@
 @using Master.Web.Components
 @using Master.Configuration
 @inject ILocalizationContext LocalizationContext
+@inject WebCoreConfiguration WebCoreConfiguration
 @model IReadOnlyList<SettingDefinition>
 @{
-	ViewData["Title"] = "Index";
-	var settingGroups = Model.Where(o => o.Group != null).GroupBy(o => o.Group);
-	var settingValues = ViewBag.SettingValues as Dictionary<string, object>;
-	var settingKeys = Model.Where(o => o.Group != null).Select(o => o.Name);
+    ViewData["Title"] = "Index";
+    var settingGroups = Model.Where(o => o.Group != null).GroupBy(o => o.Group);
+    var settingValues = ViewBag.SettingValues as Dictionary<string, object>;
+    var settingKeys = Model.Where(o => o.Group != null).Select(o => o.Name);
+
+    var baseUrl = WebCoreConfiguration.BaseUrl;
 }
 
 <div class="layui-fluid" id="LAY-app-message">
@@ -50,6 +53,33 @@
 
 		@section scripts{
 			<script>
+                Vue.component('lay-code', {
+                    template: `
+    <div class="layui-form-item">
+        <input type="hidden" :name="columnInfo.ColumnKey" :value="newValue" />
+        <label class="layui-form-label">{{columnInfo.ColumnName}}</label>
+        <div class="layui-input-block">
+            <input type="text" :name="columnInfo.ColumnKey"  autocomplete="off" class="layui-input" v-model="newValue" >
+            <img :src="qrcode" width=170/>
+        </div>
+    </div>
+    `,
+                    props: ['columnInfo', 'value'],
+                    data: function () {
+                        return {
+                            newValue: this.value
+                        }
+                    },
+                    computed: {
+                        qrcode: function () {
+                            var url = '@baseUrl/weixin/seat?code=' + this.newValue;
+                            return `/api/qrcode?url=${encodeURIComponent(url)}`;
+                        }
+                    },
+                    created: function () {
+                        console.log(this.value);
+                    }
+                });
 		var app;
 		var settingKeys=@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(settingKeys));
 		config.ready = function () {
