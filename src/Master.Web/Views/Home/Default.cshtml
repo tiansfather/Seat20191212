@@ -4,6 +4,9 @@
        .occupy {
            background: rgba(204, 204, 204, 1)
        }
+       .weekend{
+           color:red;
+       }
     </style>
 }
 
@@ -39,7 +42,7 @@
                 <thead>
                     <tr>
                         <th width="30">序号</th>
-                        <th v-for="day in getDaysInMonth(searchData.month,searchData.year)">{{day}}</th>
+                        <th v-for="day in getDaysInMonth(searchData.month,searchData.year)" :class="getWeekEndClass(day)">{{day}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,6 +77,10 @@
                 },
                 getSeatClass: function (seat, day) {
                     return seat.days.indexOf(parseInt(day)) >= 0 ? "occupy" : "free";
+                },
+                getWeekEndClass: function (day) {
+                    var dayOfWeek = new Date(this.searchData.year + "/" + this.searchData.month + "/" + day).getDay();
+                    return (dayOfWeek == 6 || dayOfWeek == 0)?'weekend':'';
                 },
                 getDaysInMonth: function (month, year) {
                     month = month.toString();
