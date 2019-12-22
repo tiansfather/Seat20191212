@@ -21,16 +21,7 @@ namespace Master.Tenants
     {
         public ModuleInfoManager ModuleInfoManager { get; set; }
         public RoleManager RoleManager { get; set; }
-        /// <summary>
-        /// 设置账套的图标
-        /// </summary>
-        /// <param name="logo"></param>
-        /// <returns></returns>
-        public virtual async Task SetTenantLogo(string logo)
-        {
-            var tenant = await GetCurrentTenantAsync();
-            tenant.Logo = logo;
-        }
+        
 
         /// <summary>
         /// 设置账套的版本

@@ -25,7 +25,7 @@ using Abp.BackgroundJobs;
 
 namespace Master.Authentication
 {
-    public class UserManager :ModuleServiceBase<User,long>, ITransientDependency
+    public class UserManager :DomainServiceBase<User,long>, ITransientDependency
     {
         private readonly IPermissionManager _permissionManager;
         private readonly IRepository<UserRole> _userRoleRepository;
@@ -554,53 +554,9 @@ namespace Master.Authentication
         }
         #endregion
 
-        #region 提交处理       
+        
 
-        public override async Task<object> DoAdd(ModuleInfo moduleInfo, IDictionary<string, string> Datas)
-        {
-            var user=await base.DoAdd(moduleInfo, Datas) as User;
-            
 
-            return user;
-        }
-
-        #endregion
-
-        #region 模块数据
-        public override IQueryable<User> GetFilteredQuery(string moduleKey = "")
-        {
-            var query = base.GetFilteredQuery(moduleKey);
-            var roleManager = Resolve<RoleManager>();
-            if (moduleKey == nameof(Assistant))
-            {
-                var assistantRole = roleManager.FindByNameAsync(StaticRoleNames.Tenants.Assistant).Result;
-                query = query.Where(o => o.Roles.Count(r => r.RoleId == assistantRole.Id) > 0);
-            }
-            else if (moduleKey == nameof(Charger))
-            {
-                var chargerRole = roleManager.FindByNameAsync(StaticRoleNames.Tenants.Charger).Result;
-                query = query.Where(o => o.Roles.Count(r => r.RoleId == chargerRole.Id) > 0);
-            }
-            else if (moduleKey == nameof(Miner))
-            {
-                var minerRole = roleManager.FindByNameAsync(StaticRoleNames.Tenants.Miner).Result;
-                //矿工需要显示已注销的
-                query = query.IgnoreQueryFilters().Where(o => o.Roles.Count(r => r.RoleId == minerRole.Id) > 0);
-            }
-            return query;
-        }
-
-        public override async Task FillEntityDataAfter(IDictionary<string, object> data, ModuleInfo moduleInfo, object entity)
-        {
-            var user = entity as User;
-            var roles = await GetRolesAsync(user);
-            await base.FillEntityDataAfter(data, moduleInfo, entity);
-            data["RoleNames"] = string.Join(',', roles.Select(o => o.DisplayName));
-            data["IsActive"] = user.IsActive;
-            data["IsDelete"] = user.IsDeleted;
-            
-        }
-        #endregion
 
         /// <summary>
         /// 获取当前是Host还是Tenant

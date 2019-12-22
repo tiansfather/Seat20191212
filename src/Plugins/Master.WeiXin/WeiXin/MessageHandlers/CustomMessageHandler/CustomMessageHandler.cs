@@ -481,7 +481,7 @@ MD5:{3}", requestMessage.Title, requestMessage.Description, requestMessage.FileT
             */
 
             var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
-            responseMessage.Content = "欢迎来到模来模往。";
+            responseMessage.Content = "欢迎来到赛多利斯斯泰帝订座系统";
             return responseMessage;
         }
 

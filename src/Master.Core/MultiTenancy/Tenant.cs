@@ -12,7 +12,7 @@ using System.Text;
 namespace Master.MultiTenancy
 
 {
-    public class Tenant : FullAuditedEntity<int>, IPassivable,IAutoEntity,IHaveProperty
+    public class Tenant : FullAuditedEntity<int>, IPassivable,IAutoEntity
     {
         public virtual Edition Edition { get; set; }
         public virtual int? EditionId { get; set; }
@@ -39,20 +39,6 @@ namespace Master.MultiTenancy
         public virtual User CreatorUser { get; set; }
         public virtual User LastModifierUser { get; set; }
         public virtual User DeleterUser { get; set; }
-        [Column(TypeName ="json")]
-        public JsonObject<IDictionary<string, object>> Property { get; set; }
-        [NotMapped]
-        public string Logo
-        {
-            get
-            {
-                return this.GetPropertyValue<string>("Logo");
-            }
-            set
-            {
-                this.SetPropertyValue("Logo", value);
-            }
-        }
     }
     public class TenantEntityMapConfiguration : EntityMappingConfiguration<Tenant>
     {

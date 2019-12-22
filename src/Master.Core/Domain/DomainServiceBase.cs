@@ -167,15 +167,6 @@ namespace Master.Domain
         {
             await Repository.DeleteAsync(entity);
         }
-        public virtual async Task SetPropertyValue(TPrimaryKey primaryKey, string propertyName, object propertyValue)
-        {
-            var entity = GetByIdAsync(primaryKey) as IHaveProperty;
-            if (entity != null)
-            {
-                entity.SetPropertyValue(propertyName, propertyValue);
-            }
-
-        }
         #endregion
 
         #region 当前登录用户及账套信息

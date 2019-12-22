@@ -10,7 +10,7 @@
     </style>
 }
 
-<div class="layui-fluid" id="app">
+<div class="layui-fluid" id="app" v-cloak>
     <div class="layui-card">
         <div class="layui-card-body">
             <el-form :inline="true" class="demo-form-inline">
@@ -20,7 +20,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @@click="">【导出月度报表】</el-button>
+                    <el-button type="primary" @@click="doExport">【导出月度报表】</el-button>
                 </el-form-item>
             </el-form>
             <el-tabs v-model="searchData.month" @@tab-click="doSearch">
@@ -74,6 +74,29 @@
                     func.runAsync(abp.services.app.report.getMonthReport(that.searchData.year, that.searchData.month).done(function (res) {
                         that.seatsInfo = res;
                     }))
+                },
+                doExport: function () {
+                    layui.table.exportFile(this.buildTableHead(), this.buildTableBody(), 'xls');
+                },
+                buildTableHead: function () {
+                    var days = this.getDaysInMonth(this.searchData.month, this.searchData.year);
+                    var head = ['序号'];
+                    for (var i = 1; i <= days; i++) {
+                        head.push(i);
+                    }
+                    return head;
+                },
+                buildTableBody: function () {
+                    var days = this.getDaysInMonth(this.searchData.month, this.searchData.year);
+                    var rows = [];
+                    this.seatsInfo.forEach(o => {
+                        var row = [o.seatNumber];
+                        for (var i = 1; i <= days; i++) {
+                            row.push(this.getSeatClass(o, i)=="occupy"?"1":"");
+                        }
+                        rows.push(row);
+                    });
+                    return rows;
                 },
                 getSeatClass: function (seat, day) {
                     return seat.days.indexOf(parseInt(day)) >= 0 ? "occupy" : "free";

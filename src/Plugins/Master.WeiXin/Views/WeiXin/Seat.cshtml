@@ -1,4 +1,8 @@
-﻿@section styles{
+﻿@{ 
+    Layout = "~/Views/Shared/_WeUILayout.cshtml";
+}
+
+@section styles{
     <style>
         body {
             line-height: 24px;
@@ -91,7 +95,7 @@
         }
     </style>
 }
-<div id="app">
+<div id="app" v-cloak>
     <header>
         <p class="header-text">
             <b>Station booking</b>

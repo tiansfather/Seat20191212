@@ -59,7 +59,7 @@ namespace Master.Authentication
         public virtual async Task<LoginResult> LoginAsync(UserLoginInfo login)
         {
             var result = await LoginAsyncInternal(login);
-            await SaveLoginAttempt(result, result.Tenant?.TenancyName, login.ProviderKey + "@" + login.LoginProvider);
+            //await SaveLoginAttempt(result, result.Tenant?.TenancyName, login.ProviderKey + "@" + login.LoginProvider);
             return result;
         }
         protected virtual async Task<LoginResult> LoginAsyncInternal(UserLoginInfo login)
@@ -88,7 +88,7 @@ namespace Master.Authentication
         public virtual async Task<LoginResult> LoginAsync(string username, string password, string tenancyName = null)
         {
             var result = await LoginAsyncInternal(username, password, tenancyName);
-            await SaveLoginAttempt(result, tenancyName, username);
+            //await SaveLoginAttempt(result, tenancyName, username);
             return result;
         }
         /// <summary>
@@ -169,15 +169,6 @@ namespace Master.Authentication
             if (!user.IsActive)
             {
                 return new LoginResult(LoginResultType.UserIsNotActive, tenant);
-            }
-            //是否是第一次登录
-            if (user.LastLoginTime == null)
-            {
-                user.IsFirstLogin = true;
-            }
-            else
-            {
-                user.IsFirstLogin = false;
             }
             user.LastLoginTime = Clock.Now;
             user.AccessFailedCount = 0;

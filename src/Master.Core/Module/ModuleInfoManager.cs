@@ -483,7 +483,7 @@ namespace Master.Module
         public virtual IList<Permission> GetAllModulePermissions()
         {
 
-
+            return new List<Permission>();
             Func<int, IList<Permission>> p = (a) =>
             {
                 //Host登录不进行模块查询

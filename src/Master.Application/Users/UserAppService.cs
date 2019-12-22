@@ -22,7 +22,7 @@ using Master.Organizations;
 namespace Master.Users
 {
     [AbpAuthorize]
-    public class UserAppService:ModuleDataAppServiceBase<User,long>
+    public class UserAppService:MasterAppServiceBase<User,long>
     {
         private readonly IRepository<UserRole, int> _userRoleRepository;
         private readonly IRepository<Role, int> _roleRepository;
@@ -217,20 +217,7 @@ namespace Master.Users
             {
                 throw new UserFriendlyException("您输入的现有密码不正确，请重新输入");
             }
-            //进行强密码检测
-            if (user.IsStrongPwd)
-            {
-                if (newPassword.Length < 6)
-                {
-                    throw new UserFriendlyException("密码长度不能小于6位");
-                }
-                if(!new System.Text.RegularExpressions.Regex("(?=.*?[0-9])(?=.*?[a-z])(?=.*?[A-Z])").IsMatch(newPassword))
-                {
-                    throw new UserFriendlyException("密码强度不符合要求,密码中请至少包含大小写字母和数字");
-                }
-            }
-            //修改密码后认为不是第一次登录
-            user.IsFirstLogin = false;
+            
             await manager.SetPassword(user, newPassword);
         }
         #endregion
@@ -294,11 +281,7 @@ namespace Master.Users
             }
         } 
         #endregion
-        protected override string ModuleKey()
-        {
-            return nameof(User);
-        }
-
+        
         
 
 

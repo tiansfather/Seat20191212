@@ -173,8 +173,7 @@ namespace Master.Migrations
                     TenancyName = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     ConnectionString = table.Column<string>(nullable: true),
-                    IsActive = table.Column<bool>(nullable: false),
-                    Property = table.Column<string>(type: "json", nullable: true)
+                    IsActive = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -214,7 +213,6 @@ namespace Master.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     LastLoginTime = table.Column<DateTime>(nullable: true),
                     ExtensionData = table.Column<string>(nullable: true),
-                    Property = table.Column<string>(type: "json", nullable: true),
                     Status = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -352,7 +350,6 @@ namespace Master.Migrations
                     DeletionTime = table.Column<DateTime>(nullable: true),
                     ExtensionData = table.Column<string>(nullable: true),
                     Remarks = table.Column<string>(nullable: true),
-                    Property = table.Column<string>(type: "json", nullable: true),
                     TenantId = table.Column<int>(nullable: false),
                     ParentId = table.Column<int>(nullable: true),
                     Code = table.Column<string>(nullable: true),
@@ -566,7 +563,6 @@ namespace Master.Migrations
                     DeletionTime = table.Column<DateTime>(nullable: true),
                     ExtensionData = table.Column<string>(nullable: true),
                     Remarks = table.Column<string>(nullable: true),
-                    Property = table.Column<string>(type: "json", nullable: true),
                     TenantId = table.Column<int>(nullable: false),
                     ModuleInfoId = table.Column<int>(nullable: false),
                     ButtonKey = table.Column<string>(nullable: true),
@@ -634,7 +630,6 @@ namespace Master.Migrations
                     DeletionTime = table.Column<DateTime>(nullable: true),
                     ExtensionData = table.Column<string>(nullable: true),
                     Remarks = table.Column<string>(nullable: true),
-                    Property = table.Column<string>(type: "json", nullable: true),
                     ModuleInfoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

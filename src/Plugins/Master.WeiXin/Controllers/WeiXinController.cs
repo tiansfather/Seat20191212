@@ -397,7 +397,6 @@ namespace Master.Controllers
             var tenant = await TenantManager.GetByIdFromCacheAsync(tenantId);
             ViewBag.TenantId = tenantId;
             ViewBag.Name = tenant.Name;
-            ViewBag.Logo = tenant.Logo;
             ViewBag.OpenId = WeUser.openid;
             return View();
             
@@ -554,8 +553,13 @@ namespace Master.Controllers
 
         [WeUserFilter]
         [WeMustSubscribeFilter]
-        public ActionResult Seat()
+        public async Task<IActionResult> Seat(string code)
         {
+            var settingCode = await SettingManager.GetSettingValueAsync("Code");
+            if (settingCode != code)
+            {
+                return Error("此二维码已过期");
+            }
             var openId = WeiXinHelper.GetWeiXinUserInfo().openid;
             ViewBag.openId = openId;
             return View();

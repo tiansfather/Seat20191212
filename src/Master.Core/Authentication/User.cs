@@ -16,7 +16,7 @@ using System.Text;
 namespace Master.Authentication
 {
     [InterModule("用户管理")]
-    public class User:FullAuditedEntity<long>, IMayHaveTenant,  IPassivable, IExtendableObject,IAutoEntity,IHaveProperty,IHaveStatus
+    public class User:FullAuditedEntity<long>, IMayHaveTenant,  IPassivable, IExtendableObject,IAutoEntity,IHaveStatus
     {
         public const string Status_NotVerified = "NotVerified";
         public const string AdminUserName= "admin";
@@ -65,46 +65,8 @@ namespace Master.Authentication
         public virtual User CreatorUser { get; set; }
         public virtual User LastModifierUser { get; set; }
         public virtual User DeleterUser { get; set; }
-        [Column(TypeName ="json")]
-        public JsonObject<IDictionary<string, object>> Property { get; set; }
         public string Status { get;set; }
 
-        [NotMapped]
-        public bool IsStrongPwd
-        {
-            get
-            {
-                return this.GetPropertyValue<bool>("IsStrongPwd");
-            }
-            set
-            {
-                this.SetPropertyValue("IsStrongPwd", value);
-            }
-        }
-        [NotMapped]
-        public bool MustChangePwd
-        {
-            get
-            {
-                return this.GetPropertyValue<bool>("MustChangePwd");
-            }
-            set
-            {
-                this.SetPropertyValue("MustChangePwd", value);
-            }
-        }
-        [NotMapped]
-        public bool IsFirstLogin
-        {
-            get
-            {
-                return this.GetPropertyValue<bool>("IsFirstLogin");
-            }
-            set
-            {
-                this.SetPropertyValue("IsFirstLogin", value);
-            }
-        }
         /// <summary>
         /// 生成账套管理员用户
         /// </summary>

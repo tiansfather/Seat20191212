@@ -49,14 +49,14 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\WeiXin\Seat.cshtml">
+    <Content Include="Views\WeiXin\Seat.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\WeiXin\GuanZhu.cshtml">
+    </Content>
+    <Content Include="Views\WeiXin\GuanZhu.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>
-    </EmbeddedResource>
+    </Content>
     <EmbeddedResource Include="Views\WeiXin\Register.cshtml" />
     <EmbeddedResource Include="Views\WeiXin\ScanUserInfoCallback.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

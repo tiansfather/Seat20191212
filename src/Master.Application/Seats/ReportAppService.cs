@@ -12,7 +12,7 @@ namespace Master.Seats
         public virtual async Task<object> GetMonthReport(int year,int month)
         {
             var seatOrders = await Repository.GetAll().Where(o => o.Year == year && o.Month == month).ToListAsync();
-            var seats = await Resolve<SeatManager>().GetAllList();
+            var seats = await Resolve<SeatManager>().GetAll().ToListAsync();
 
             return seats.Select(o =>
             {

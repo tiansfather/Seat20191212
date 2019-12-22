@@ -154,6 +154,9 @@
     <None Include="wwwroot\assets\layuiadmin\modules\user.js" />
     <None Include="wwwroot\assets\layuiadmin\modules\useradmin.js" />
     <None Include="wwwroot\assets\layuiadmin\modules\workorder.js" />
+    <None Include="wwwroot\css\aos.js" />
+    <None Include="wwwroot\js\highlight.min.js" />
+    <None Include="wwwroot\js\jquery-2.1.1.min.js" />
     <None Include="wwwroot\lib\codemirror-minified\addon\comment\comment.js" />
     <None Include="wwwroot\lib\codemirror-minified\addon\comment\continuecomment.js" />
     <None Include="wwwroot\lib\codemirror-minified\addon\dialog\dialog.js" />
