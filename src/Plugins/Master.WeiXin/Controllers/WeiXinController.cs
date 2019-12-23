@@ -555,13 +555,14 @@ namespace Master.Controllers
         [WeMustSubscribeFilter]
         public async Task<IActionResult> Seat(string code)
         {
-            var settingCode = await SettingManager.GetSettingValueAsync("Code");
+            var settingCode = await SettingManager.GetSettingValueForTenantAsync("Code",1);
             if (settingCode != code)
             {
                 return Error("此二维码已过期");
             }
             var openId = WeiXinHelper.GetWeiXinUserInfo().openid;
             ViewBag.openId = openId;
+            //ViewBag.openId = "111";
             return View();
         }
 

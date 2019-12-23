@@ -23,6 +23,10 @@ namespace Master.Seats
             {
                 throw new UserFriendlyException("此座位已被占走");
             }
+            if(await Resolve<IRepository<SeatOrder,int>>().CountAsync(o=>o.OrderOpenId==openId && o.Year==DateTime.Now.Year && o.Month==DateTime.Now.Month && o.Day == DateTime.Now.Day) > 0)
+            {
+                throw new UserFriendlyException("您一天只能占一个位");
+            }
             var seatOrder = new SeatOrder()
             {
                 SeatNumber=seatNumber,

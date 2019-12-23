@@ -1,11 +1,11 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 
 
  
 
-body{ margin:auto; text-align:center;font-family: Arial, Helvetica, sans-serif; background-color:#000;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none; user-select:none;overflow-x: hidden !important;
+body{ margin:auto; text-align:center;font-family: Arial, Helvetica, sans-serif; background-color:#fff;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none; user-select:none;overflow-x: hidden !important;
 min-height: 100%;-webkit-backface-visibility: hidden; -moz-backface-visibility: hidden; -ms-backface-visibility: hidden; -o-backface-visibility: hidden; backface-visibility: hidden; background-image:url(../images/back-white.jpg);  background-attachment:fixed;margin:0px; padding:0px; background-size:100%; background-repeat:no-repeat; background-position:center;
 display: flex; /* 设置flex */
 flex-direction: column; /* 方向为垂直方向 */}
@@ -16,7 +16,7 @@ flex-direction: column; /* 方向为垂直方向 */}
 a.title{ float:left; color:#333; font-weight:bold; font-size:16px; padding-bottom:5px; text-decoration:none}
 .arrow{ float:left; width:8px; padding:0px 6px 3px 0px}
 .date{ float:right; color:#333; font-size:12px; line-height:25px;padding-bottom:-10px}
-.notice{ width:100%;color:#222; font-size:12px; padding:7%; line-height:20px; text-align:left}
+.notice{ color:#222; font-size:12px; padding:7%; line-height:20px; text-align:left}
 .clear{ clear:both}
 
 ul,li,ol {margin:0px;padding:0px;list-style-type:none;}
@@ -79,13 +79,13 @@ input[type=checkbox] {
   -o-transition: border-color ease 0.2s;
   -webkit-transition: border-color ease 0.2s;
   transition: border-color ease 0.2s;
-  cursor: pointer;background-image:url(../images/seat.png); background-size:100%
+  cursor: pointer;background-image:url(../images/seat.jpg); background-size:100%
 }
 .check-box p{ color:#ffb81c; position:absolute; margin:65% 40%; text-align:center; display: opacity:1;-webkit-transition-property: all;
           transition-property: all;
   -webkit-transition-duration: .3s;
           transition-duration: .3s;}
-.check-box li{ color:#ffb81c; margin:10% 32%;padding:10px; position:absolute;font-size:62px;}
+.check-box li{ color:#ffb81c; margin:10% auto;padding:10px; position:absolute;font-size:62px;left:0px;right:0px;}
 .check-box p1{ width:200px;color:#ffb81c; position:absolute; margin:55% -15%; text-align:center; opacity:0;-webkit-transition-property: all;
           transition-property: all;
   -webkit-transition-duration: .3s;
@@ -94,7 +94,7 @@ input[type=checkbox] {
           transition-property: all;
   -webkit-transition-duration: .3s;
           transition-duration: .3s;}
-input[type=checkbox]:checked + .check-box{ background-image:url(../images/station.png); color:#000}
+input[type=checkbox]:checked + .check-box{ background-image:url(../images/station.jpg); color:#000}
 input[type=checkbox]:checked + .check-box p{ color:#000; opacity:0; margin:55% 40%;}
 input[type=checkbox]:checked + .check-box li{ color:#000;}
 input[type=checkbox]:checked + .check-box p1{ color:#000; opacity:1;margin:65% -15%;}
@@ -111,7 +111,7 @@ input[type=checkbox1] {
   -o-transition: border-color ease 0.2s;
   -webkit-transition: border-color ease 0.2s;
   transition: border-color ease 0.2s;
-  cursor: auto;background-image:url(../images/station-none.png); background-size:100%
+  cursor: auto;background-image:url(../images/station-none.jpg); background-size:100%
 }
 input[type=checkbox1]:checked + .check-box1{ background-image:url(../images/station.png); color:#000}
 .check-box1 li{ color:#555;text-align:center; padding:10px; margin:10% 32%;position:absolute;font-size:62px;}

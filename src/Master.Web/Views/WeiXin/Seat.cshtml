@@ -1,129 +1,60 @@
-﻿@using System.Globalization
-@using Abp.Configuration
-@using Abp.Configuration.Startup
-@using Abp.Web.Security.AntiForgery
-@using Master
-@using Master.Configuration
-@inherits Master.Web.Views.MasterRazorPage<TModel>
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@addTagHelper *, Master.Web.Core
-@inject Master.Timing.AppTimes AppTimes
-@inject IAbpAntiForgeryManager AbpAntiForgeryManager
-@{
-    Layout = null;
-    AbpAntiForgeryManager.SetCookie(Context);
+﻿@{
+    Layout = "~/Views/Shared/_WeUILayout.cshtml";
+    ViewBag.Title = "赛多利斯（Sartorius）";
 }
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+@section styles{
+    <link href="/css/style.css" rel="stylesheet" type="text/css" asp-append-version="true"/>
+    <link rel="/stylesheet" href="/css/aos.css" asp-append-version="true"/>
+}
+<div class="contain" id="app" v-cloak=v-cloak>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>赛多利斯（Sartorius）</title>
-    <link href="/css/style.css" rel="stylesheet" type="text/css" />
-    <link rel="/stylesheet" href="css/aos.css" />
-    <script type="text/javascript">
-        // This is used to get the application's root path from javascript. It's useful if you're running application in a virtual directory under IIS.
-        var abp = abp || {};
-        abp.appPath = '@ApplicationPath';
-    </script>
-    <script src="/assets/layuiadmin/layui/layui.js" asp-append-version="true"></script>
-    <script src="~/view-resources/Views/_Bundles/base.min.js" asp-append-version="true"></script>
-    <script src="~/view-resources/Views/_Bundles/abp.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/global.js" asp-append-version="true"></script>
-    <script>
-        layui.config({
-            base: config.layuiBase //静态资源所在路径
-            , version: 181006
-        }).extend($.extend({
-            index: config.layuiIndex //主入口模块
-        }, config.layuiExtends));
-
-
-    </script>
-    <script src="/js/jquery-1.11.3.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div class="contain">
-
-        <div class="nav">
-            <a class="title" href="#"><div class="arrow"><img src="/images/arrow-b.png" width="100%" /></div>Station booking</a>
-            <div class="date">@DateTime.Now.ToString("yyyy-MM-dd")</div>
-            <div class="clear"></div>
-        </div>
-
-        <div class="notice">
-            请选择您要预约的座位：<br />
-            Free为空位，Occupied为已占座位，再次点击可取消定位。
-        </div>
-
-        <div class="table">
-
-            <input type="checkbox" id="t1" />
-            <label for="t1" class="check-box">
-                <p>Free</p>
-                <p1>My Booking</p1>
-                <p2><img src="images/chose.png" width="100%" /></p2>
-                <li>1</li>
-                <img src="images/yinf1.png" width="100%" />
-            </label>
-
-            <input type="checkbox1" id="n2" />
-            <label for="n2" class="check-box1">
-                <p>Occupied</p>
-                <li>2</li>
-                <img src="images/yinf1.png" width="100%" />
-            </label>
-
-            <input type="checkbox1" id="n3" />
-            <label for="n3" class="check-box1">
-                <p>Occupied</p>
-                <li>3</li>
-                <img src="images/yinf1.png" width="100%" />
-            </label>
-
-
-            <input type="checkbox" id="t4" />
-            <label for="t4" class="check-box">
-                <p>Free</p>
-                <p1>My Booking</p1>
-                <p2><img src="images/chose.png" width="100%" /></p2>
-                <li>4</li>
-                <img src="images/yinf1.png" width="100%" />
-            </label>
-            <div class="clear"></div>
-
-            <input type="checkbox" id="t5" />
-            <label for="t5" class="check-box">
-                <p>Free</p>
-                <p1>My Booking</p1>
-                <p2><img src="images/chose.png" width="100%" /></p2>
-                <li>5</li>
-                <img src="images/yinf1.png" width="100%" />
-            </label>
-
-            <input type="checkbox" id="t6" />
-            <label for="t6" class="check-box">
-                <p>Free</p>
-                <p1>My Booking</p1>
-                <p2><img src="images/chose.png" width="100%" /></p2>
-                <li>6</li>
-                <img src="images/yinf1.png" width="100%" />
-            </label>
-        </div>
-
-        <div>
-            <a class="button">Confirm</a>
-        </div>
+    <div class="nav">
+        <a class="title" href="#">@*<div class="arrow"><img src="/images/arrow-b.png" width="100%" /></div>*@Station booking</a>
+        <div class="date">@DateTime.Now.ToString("yyyy-MM-dd")</div>
+        <div class="clear"></div>
     </div>
-    <script src="~/AbpScripts/GetScripts?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
-    <script>
-        layui.use(['layer'], function () {
-            //调用layui加载完事件
-            config.ready();
-        })
-    </script>
+
+    <div class="notice">
+        请选择您要预约的座位：<br />
+        Free为空位，Occupied为已占座位，再次点击可取消定位。
+    </div>
+
+    <div class="table">
+        <template v-for="(item,index) in seats">
+            <template v-if="item.status==0">
+                <input type="checkbox" :id="'t'+item.seatNumber" disabled=disabled disabled=disabled />
+                <label :for="'t'+item.seatNumber" class="check-box" @@click="doBook(item)">
+                    <p>Free</p>
+                    <p1>My Booking</p1>
+                    <p2><img src="/images/chose.png" width="100%" /></p2>
+                    <li>{{item.seatNumber}}</li>
+                    <img src="/images/yinf1.png" width="100%" />
+                </label>
+            </template>
+            <template v-if="item.status==1">
+                <input type="checkbox" :id="'t'+item.seatNumber" checked=checked checked=checked disabled=disabled disabled=disabled />
+                <label :for="'t'+item.seatNumber" class="check-box" @@click="doBook(item)">
+                    <p>Free</p>
+                    <p1>My Booking</p1>
+                    <p2><img src="/images/chose.png" width="100%" /></p2>
+                    <li>{{item.seatNumber}}</li>
+                    <img src="/images/yinf1.png" width="100%" />
+                </label>
+            </template>
+            <template v-if="item.status==-1">
+                <input type="checkbox1" :id="'t'+item.seatNumber" disabled=disabled disabled=disabled />
+                <label :for="'t'+item.seatNumber" class="check-box1">
+                    <p>Occupied</p>
+                    <li>{{item.seatNumber}}</li>
+                    <img src="/images/yinf1.png" width="100%" />
+                </label>
+            </template>
+        </template>
+
+    </div>
+
+</div>
+@section scripts{
     <script>
         var app=new Vue({
             el: "#app",
@@ -140,12 +71,15 @@
                         return;
                     }
                     if (seat.class == "free") {
-                        abp.message.confirm("确认定下此座位?", function () {
+                        if (confirm("确认定下此座位?")) {
                             func.runAsync(abp.services.app.seatOrder.order(seat.seatNumber, app.openId).done(res => {
                                 layer.msg('提交成功')
                                 location.reload();
                             }))
-                        })
+                        }
+                        //abp.message.confirm("确认定下此座位?", function () {
+                            
+                        //})
                     } else if (seat.class == "mine") {
                         abp.message.confirm("确认取消此座位?", function () {
                             func.runAsync(abp.services.app.seatOrder.cancel(seat.seatNumber, app.openId).done(res => {
@@ -161,12 +95,15 @@
                     this.seats = res;
                     this.seats.forEach(seat => {
                         if (!seat.orderOpenId) {
+                            seat.status = 0;
                             seat.class = "free";
                             seat.des = "Free";
                         } else if (seat.orderOpenId == this.openId) {
+                            seat.status = 1;
                             seat.class = "mine";
                             seat.des = "My Booking";
                         } else {
+                            seat.status = -1;
                             seat.class = "occupy";
                             seat.des = "Occupied";
                         }
@@ -175,5 +112,4 @@
             }
         })
     </script>
-</body>
-</html>
+}
