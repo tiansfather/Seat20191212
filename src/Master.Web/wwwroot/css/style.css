@@ -114,5 +114,14 @@ input[type=checkbox1] {
   cursor: auto;background-image:url(../images/station-none.jpg); background-size:100%
 }
 input[type=checkbox1]:checked + .check-box1{ background-image:url(../images/station.png); color:#000}
-.check-box1 li{ color:#555;text-align:center; padding:10px; margin:10% 32%;position:absolute;font-size:62px;}
+.check-box1 li {
+    color: #555;
+    text-align: center;
+    padding: 10px;
+    margin: 10% auto;
+    position: absolute;
+    font-size: 62px;
+    left: 0px;
+    right: 0px;
+}
 .check-box1 p{ color:#ffb81c; position:absolute; margin:65% 27%; text-align:center; display:block; }

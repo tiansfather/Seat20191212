@@ -41,14 +41,14 @@
             <table class="layui-table">
                 <thead>
                     <tr>
-                        <th width="30">序号</th>
+                        <th width="30" align="center">序号</th>
                         <th v-for="day in getDaysInMonth(searchData.month,searchData.year)" :class="getWeekEndClass(day)">{{day}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="seat in seatsInfo" height="30">
-                        <th>{{seat.seatNumber}}</th>
-                        <th v-for="day in getDaysInMonth(searchData.month,searchData.year)" :class="getSeatClass(seat,day)"></th>
+                        <td align="center">{{seat.seatNumber}}</td>
+                        <td v-for="day in getDaysInMonth(searchData.month,searchData.year)" :class="getSeatClass(seat,day)"></td>
                     </tr>
                 </tbody>
             </table>

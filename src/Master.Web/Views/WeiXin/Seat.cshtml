@@ -71,22 +71,33 @@
                         return;
                     }
                     if (seat.class == "free") {
-                        if (confirm("确认定下此座位?")) {
+                        layer.confirm("确认定下此座位?", {title:null}, function () {
+                            layer.closeAll();
                             func.runAsync(abp.services.app.seatOrder.order(seat.seatNumber, app.openId).done(res => {
                                 layer.msg('提交成功')
                                 location.reload();
                             }))
-                        }
+                        })
+                        //if (confirm("确认定下此座位?")) {
+                            
+                        //}
                         //abp.message.confirm("确认定下此座位?", function () {
                             
                         //})
                     } else if (seat.class == "mine") {
-                        abp.message.confirm("确认取消此座位?", function () {
+                        layer.confirm("确认取消此座位?", { title: null },  function () {
+                            layer.closeAll();
                             func.runAsync(abp.services.app.seatOrder.cancel(seat.seatNumber, app.openId).done(res => {
                                 layer.msg('提交成功')
                                 location.reload();
                             }))
                         })
+                        //if (confirm("确认取消此座位?")) {
+                            
+                        //}
+                        //abp.message.confirm("确认取消此座位?", function () {
+                            
+                        //})
                     }
                 }
             },
