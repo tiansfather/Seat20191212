@@ -1,126 +1,188 @@
-﻿@{
-    Layout = "~/Views/Shared/_WeUILayout.cshtml";
-    ViewBag.Title = "赛多利斯（Sartorius）";
-}
-@section styles{
-    <link href="/css/style.css" rel="stylesheet" type="text/css" asp-append-version="true"/>
-    <link rel="/stylesheet" href="/css/aos.css" asp-append-version="true"/>
-}
-<div class="contain" id="app" v-cloak=v-cloak>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-    <div class="nav">
-        <a class="title" href="#">@*<div class="arrow"><img src="/images/arrow-b.png" width="100%" /></div>*@Station booking</a>
-        <div class="date">@DateTime.Now.ToString("yyyy-MM-dd")</div>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>赛多利斯（Sartorius）</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css" asp-append-version="true">
+    <link rel="stylesheet" href="/css/aos.css" asp-append-version="true"/>
+    
+</head>
+<body>
+    <div class="contain" id="app" v-cloak>
+
+        <div class="nav">
+            <a class="title" href="#">Station booking</a>
+            <div class="date">@DateTime.Now.ToString("yyyy-MM-dd")</div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="notice">
+            请选择您要预约的座位：<br />
+            Free为空位，Occupied为已占座位，再次点击可取消定位。
+        </div>
+
+        <div class="table" >
+            <template v-for="(item,index) in seats">
+                <template v-if="item.status==0">
+                    <input type="checkbox" :id="'t'+item.seatNumber" disabled="disabled"/>
+                    <label :for="'t'+item.seatNumber" class="check-box" @@click="doBook(item)">
+                        <p style="top:65%">Free</p>
+                        <p1>My Booking</p1>
+
+                        <li>{{item.seatNumber}}</li>
+                        <img src="/images/yinf1.png" width="100%" />
+                    </label>
+                </template>
+                <template v-if="item.status==1">
+                    <input type="checkbox" :id="'t'+item.seatNumber" checked="checked" disabled="disabled"/>
+                    <label :for="'t'+item.seatNumber" class="check-box" @@click="doBook(item)">
+                        <p>Free</p>
+                        <p1>My Booking</p1>
+
+                        <li>{{item.seatNumber}}</li>
+                        <img src="/images/yinf1.png" width="100%" />
+                    </label>
+                </template>
+                <template v-if="item.status==-1">
+                    <input type="checkbox1" :id="'t'+item.seatNumber" disabled= disabled />
+                    <label :for="'t'+item.seatNumber" class="check-box1">
+                        <p style="top:65%">Occupied</p>
+                        <li>{{item.seatNumber}}</li>
+                        <img src="/images/yinf1.png" width="100%" />
+                    </label>
+                </template>
+            </template>
+        </div>
+
         <div class="clear"></div>
-    </div>
+        <!--效果html开始-->
+        @*<nav class="main_nav">
+            <ul>
+                <li><a class="cd-signin" href="#0">confirm</a></li>
+            </ul>
+        </nav>*@
 
-    <div class="notice">
-        请选择您要预约的座位：<br />
-        Free为空位，Occupied为已占座位，再次点击可取消定位。
-    </div>
+        <div class="cd-user-modal">
+            <div class="cd-user-modal-container">
+                <li class="confirm">
+                    {{currentSeat.status==0?'确认定下此座位?':'确认取消此座位?'}}
+                </li>
+                <div id="cd-login">
+                    <a class="button" @@click="doSubmit(currentSeat)">确 认</a><a class="button" style="background:#ccc" @@click='hideDlg'>取 消</a>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+        <!--效果html结束-->
+        <div class="clear"></div>
 
-    <div class="table">
-        <template v-for="(item,index) in seats">
-            <template v-if="item.status==0">
-                <input type="checkbox" :id="'t'+item.seatNumber" disabled=disabled disabled=disabled />
-                <label :for="'t'+item.seatNumber" class="check-box" @@click="doBook(item)">
-                    <p>Free</p>
-                    <p1>My Booking</p1>
-                    <p2><img src="/images/chose.png" width="100%" /></p2>
-                    <li>{{item.seatNumber}}</li>
-                    <img src="/images/yinf1.png" width="100%" />
-                </label>
-            </template>
-            <template v-if="item.status==1">
-                <input type="checkbox" :id="'t'+item.seatNumber" checked=checked checked=checked disabled=disabled disabled=disabled />
-                <label :for="'t'+item.seatNumber" class="check-box" @@click="doBook(item)">
-                    <p>Free</p>
-                    <p1>My Booking</p1>
-                    <p2><img src="/images/chose.png" width="100%" /></p2>
-                    <li>{{item.seatNumber}}</li>
-                    <img src="/images/yinf1.png" width="100%" />
-                </label>
-            </template>
-            <template v-if="item.status==-1">
-                <input type="checkbox1" :id="'t'+item.seatNumber" disabled=disabled disabled=disabled />
-                <label :for="'t'+item.seatNumber" class="check-box1">
-                    <p>Occupied</p>
-                    <li>{{item.seatNumber}}</li>
-                    <img src="/images/yinf1.png" width="100%" />
-                </label>
-            </template>
-        </template>
 
     </div>
-
-</div>
-@section scripts{
+    <script src="~/view-resources/Views/_Bundles/base.min.js" asp-append-version="true"></script>
+    <script src="~/view-resources/Views/_Bundles/abp.min.js" asp-append-version="true"></script>
+    <script src="~/assets/js/global.js" asp-append-version="true"></script>
     <script>
+        var $form_modal = $('.cd-user-modal'),
+            $form_login = $form_modal.find('#cd-login'),
+            $form_signup = $form_modal.find('#cd-signup'),
+            $form_modal_tab = $('.cd-switcher'),
+            $tab_login = $form_modal_tab.children('li').eq(0).children('a'),
+            $tab_signup = $form_modal_tab.children('li').eq(1).children('a'),
+            $main_nav = $('.main_nav');
         var app=new Vue({
             el: "#app",
             data() {
                 return {
+                    name:'',
                     seats: [],
-                    openId:'@ViewBag.openId'
+                    openId: '@ViewBag.openId',
+                    currentSeat: {}
                 }
             },
             methods: {
+                hideDlg: function () {
+                    $(".cd-user-modal").removeClass("is-visible");
+                },
                 doBook(seat) {
                     if (!this.openId) {
                         abp.message.error("微信信息错误");
                         return;
                     }
-                    if (seat.class == "free") {
-                        layer.confirm("确认定下此座位?", {title:null}, function () {
-                            layer.closeAll();
-                            func.runAsync(abp.services.app.seatOrder.order(seat.seatNumber, app.openId).done(res => {
-                                layer.msg('提交成功')
-                                location.reload();
-                            }))
-                        })
-                        //if (confirm("确认定下此座位?")) {
-                            
-                        //}
-                        //abp.message.confirm("确认定下此座位?", function () {
-                            
-                        //})
-                    } else if (seat.class == "mine") {
-                        layer.confirm("确认取消此座位?", { title: null },  function () {
-                            layer.closeAll();
-                            func.runAsync(abp.services.app.seatOrder.cancel(seat.seatNumber, app.openId).done(res => {
-                                layer.msg('提交成功')
-                                location.reload();
-                            }))
-                        })
-                        //if (confirm("确认取消此座位?")) {
-                            
-                        //}
-                        //abp.message.confirm("确认取消此座位?", function () {
-                            
-                        //})
+                    this.currentSeat = seat;
+                    Vue.nextTick(function () {
+                        $(".cd-user-modal").addClass("is-visible");
+                    })
+                    
+                    //if (seat.status==0) {
+                    //    layer.confirm("确认定下此座位?", {title:null,closeBtn:null,btnAlign:'c'}, function () {
+                    //        layer.closeAll();
+                    //        func.runAsync(abp.services.app.seatOrder.order(seat.seatNumber, app.openId).done(res => {
+                    //            layer.msg('提交成功');
+                    //            seat.status = 1;
+                    //            //location.reload();
+                    //        }))
+                    //    })
+                    //    //if (confirm("确认定下此座位?")) {
+
+                    //    //}
+                    //    //abp.message.confirm("确认定下此座位?", function () {
+
+                    //    //})
+                    //} else if (seat.status==1) {
+                    //    layer.confirm("确认取消此座位?", {title:null,closeBtn:null,btnAlign:'c'},  function () {
+                    //        layer.closeAll();
+                    //        func.runAsync(abp.services.app.seatOrder.cancel(seat.seatNumber, app.openId).done(res => {
+                    //            layer.msg('提交成功');
+                    //            seat.status = 0;
+                    //            //location.reload();
+                    //        }))
+                    //    })
+                    //    //if (confirm("确认取消此座位?")) {
+
+                    //    //}
+                    //    //abp.message.confirm("确认取消此座位?", function () {
+
+                    //    //})
+                    //}
+                },
+                doSubmit: function (seat) {
+                    $(".cd-user-modal").removeClass("is-visible");
+                    if (seat.status==0) {
+                        func.runAsync(abp.services.app.seatOrder.order(seat.seatNumber, app.openId).done(res => {
+                            layer.msg('提交成功');
+                            seat.status = 1;
+                            //location.reload();
+                        }))
+                    } else if (seat.status==1) {
+                        func.runAsync(abp.services.app.seatOrder.cancel(seat.seatNumber, app.openId).done(res => {
+                            layer.msg('提交成功');
+                            seat.status = 0;
+                            //location.reload();
+                        }))
                     }
                 }
             },
             mounted() {
+               
+
+
                 abp.services.app.seatOrder.getSeatsStatus(this.openId).done(res => {
-                    this.seats = res;
-                    this.seats.forEach(seat => {
+                    res.forEach(seat => {
                         if (!seat.orderOpenId) {
                             seat.status = 0;
-                            seat.class = "free";
-                            seat.des = "Free";
                         } else if (seat.orderOpenId == this.openId) {
                             seat.status = 1;
-                            seat.class = "mine";
-                            seat.des = "My Booking";
                         } else {
                             seat.status = -1;
-                            seat.class = "occupy";
-                            seat.des = "Occupied";
                         }
                     })
+                    this.seats = res;
                 });
             }
         })
+
     </script>
-}
+</body>
+</html>

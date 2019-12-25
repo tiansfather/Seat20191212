@@ -14,6 +14,7 @@ using Master.MultiTenancy;
 using Master.Notices;
 using Master.Organizations;
 using Master.Resources;
+using Master.Seats;
 using Master.Templates;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -55,6 +56,7 @@ namespace Master.EntityFrameworkCore
         public virtual DbSet<Dictionary> Dictionary { get; set; }
         public virtual DbSet<Seat> Seat { get; set; }
         public virtual DbSet<SeatOrder> SeatOrder { get; set; }
+        public virtual DbSet<SeatUser> SeatUser { get; set; }
         #endregion
 
         public MasterDbContext(DbContextOptions<MasterDbContext> options) 

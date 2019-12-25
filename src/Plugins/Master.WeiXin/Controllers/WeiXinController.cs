@@ -44,7 +44,7 @@ namespace Master.Controllers
         public IRepository<UserLogin,int> UserLoginRepository { get; set; }
         public TenantManager TenantManager { get; set; }
         public WeiXinAppService WeiXinAppService { get; set; }
-
+        public SeatUserManager SeatUserManager { get; set; }
         
 
         #region 消息接口
@@ -560,7 +560,19 @@ namespace Master.Controllers
             {
                 return Error("此二维码已过期");
             }
-            var openId = WeiXinHelper.GetWeiXinUserInfo().openid;
+
+            var weuser = WeiXinHelper.GetWeiXinUserInfo();
+            var openId = weuser.openid;
+
+            //如果系统中没有此用户则新增
+            var seatuser = new SeatUser()
+            {
+                OpenId = openId,
+                NickName = weuser.nickname,
+                Avata = weuser.headimgurl
+            };
+            ViewBag.isFirstTime = !await SeatUserManager.IsCreated(seatuser);
+
             ViewBag.openId = openId;
             //ViewBag.openId = "111";
             return View();

@@ -1,0 +1,32 @@
+[
+  
+  {
+    "name": "Admin",
+    "displayName": "后台系统管理",
+    "icon": "iconfont icon-xingzheng",
+    "order": 1,
+    "url": "",
+    "items": [
+      {
+        "name": "Admin.Tenancy.Report",
+        "displayName": "报表",
+        "icon": "iconfont icon-shezhi1",
+        "url": "/Home/Default"
+      },
+      {
+        "name": "Admin.Tenancy.Seats",
+        "displayName": "位置管理",
+        "icon": "iconfont icon-shezhi1",
+        "url": "/Seats/"
+      },
+      {
+        "name": "Setting.Tenancy.BaseSetting",
+        "displayName": "基本设置",
+        "icon": "iconfont icon-shezhi1",
+        "url": "/Setting/"
+      }
+
+    ]
+  }
+
+]
