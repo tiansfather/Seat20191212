@@ -11,12 +11,22 @@ namespace Master.Seats
     {
         public virtual async Task<object> GetMonthReport(int year,int month)
         {
-            var seatOrders = await Repository.GetAll().Where(o => o.Year == year && o.Month == month).ToListAsync();
+            //var seatOrders = await Repository.GetAll().Where(o => o.Year == year && o.Month == month).ToListAsync();
+
+            var query = from seatOrder in Repository.GetAll()
+                        join seatUser in Resolve<SeatUserManager>().GetAll() on seatOrder.OrderOpenId equals seatUser.OpenId
+                        where seatOrder.Year == year && seatOrder.Month == month
+                        select new { seatOrder.SeatNumber, seatOrder.Day, seatUser.Name };
+
+            var seatOrders = await query.ToListAsync();
+
             var seats = await Resolve<SeatManager>().GetAll().ToListAsync();
+
+            //var seatUsers = await Resolve<SeatUserManager>().GetAll().Where(o => seatOrders.Select(s => s.OrderOpenId).Contains(o.OpenId)).ToListAsync();
 
             return seats.Select(o =>
             {
-                var occupiedDays = seatOrders.Where(s => o.SeatNumber == s.SeatNumber).Select(s => s.Day);
+                var occupiedDays = seatOrders.Where(s => o.SeatNumber == s.SeatNumber).Select(s => new { s.Day,s.Name });
                 return new
                 {
                     o.SeatNumber,

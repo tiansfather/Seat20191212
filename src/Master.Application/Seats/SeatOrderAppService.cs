@@ -66,5 +66,14 @@ namespace Master.Seats
 
             return result;
         }
+
+        public virtual async Task SetUserName(string openId,string name)
+        {
+            var seatUser = await Resolve<SeatUserManager>().GetByOpenId(openId);
+            if (seatUser != null)
+            {
+                seatUser.Name = name;
+            }
+        }
     }
 }

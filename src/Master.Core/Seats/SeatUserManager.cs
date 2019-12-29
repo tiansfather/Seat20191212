@@ -12,7 +12,7 @@ namespace Master
     {
         public async Task<bool> IsCreated(SeatUser seatuser)
         {
-            var oriUser = await GetAll().Where(o => o.OpenId == seatuser.OpenId).FirstOrDefaultAsync();
+            var oriUser = await GetByOpenId(seatuser.OpenId);
             if (oriUser == null)
             {
                 await InsertAsync(seatuser);
@@ -22,6 +22,11 @@ namespace Master
             {
                 return true;
             }
+        }
+
+        public async Task<SeatUser> GetByOpenId(string openId)
+        {
+            return await GetAll().Where(o => o.OpenId == openId).FirstOrDefaultAsync();
         }
     }
 }

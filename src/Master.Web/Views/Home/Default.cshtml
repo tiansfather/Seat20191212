@@ -7,6 +7,11 @@
        .weekend{
            color:red;
        }
+       .cell{
+           text-align:center !important;
+           padding-left:4px !important;
+           padding-right:4px !important;
+       }
     </style>
 }
 
@@ -38,17 +43,17 @@
                 <el-tab-pane label="十二月" name="12"></el-tab-pane>
             </el-tabs>
 
-            <table class="layui-table">
+            <table class="layui-table" style="table-layout:fixed">
                 <thead>
                     <tr>
-                        <th width="30" align="center">序号</th>
-                        <th v-for="day in getDaysInMonth(searchData.month,searchData.year)" :class="getWeekEndClass(day)">{{day}}</th>
+                        <th width="30" class="cell">序号</th>
+                        <th v-for="day in getDaysInMonth(searchData.month,searchData.year)" :class="getWeekEndClass(day)" class="cell">{{day}}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="seat in seatsInfo" height="30">
-                        <td align="center">{{seat.seatNumber}}</td>
-                        <td v-for="day in getDaysInMonth(searchData.month,searchData.year)" :class="getSeatClass(seat,day)"></td>
+                        <td class="cell">{{seat.seatNumber}}</td>
+                        <td v-for="day in getDaysInMonth(searchData.month,searchData.year)" :class="getSeatClass(seat,day)"  class="cell">{{getSeatUserName(seat,day)}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -92,14 +97,23 @@
                     this.seatsInfo.forEach(o => {
                         var row = [o.seatNumber];
                         for (var i = 1; i <= days; i++) {
-                            row.push(this.getSeatClass(o, i)=="occupy"?"1":"");
+                            row.push(this.getSeatClass(o, i) == "occupy" ? this.getSeatUserName(o,i):"");
                         }
                         rows.push(row);
                     });
                     return rows;
                 },
                 getSeatClass: function (seat, day) {
-                    return seat.days.indexOf(parseInt(day)) >= 0 ? "occupy" : "free";
+                    //return seat.days.indexOf(parseInt(day)) >= 0 ? "occupy" : "free";
+                    return seat.days.filter(o=>o.day==parseInt(day)).length> 0 ? "occupy" : "free";
+                },
+                getSeatUserName: function (seat, day) {
+                    var seatOrder = seat.days.filter(o => o.day == parseInt(day))[0];
+                    if (seatOrder) {
+                        return seatOrder.name||"1";
+                    } else {
+                        return "";
+                    }
                 },
                 getWeekEndClass: function (day) {
                     var dayOfWeek = new Date(this.searchData.year + "/" + this.searchData.month + "/" + day).getDay();

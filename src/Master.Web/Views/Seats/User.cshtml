@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="layui-fluid" id="LAY-app-message">
+    <div class="layui-card">
+        <form class="layui-form layui-form-pane" onsubmit="return doSearch();">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" id="keyword" name="keyword" autocomplete="off" class="layui-input">
+                    </div>
+                    <button class="layui-btn layui-btn-primary" type="button" onclick="doSearch()">@L("搜索")</button>
+
+                </div>
+            </div>
+        </form>
+
+
+        <table autoevent="1" id="SeatUser" lay-filter="SeatUser" class="layui-table " lay-data="{cellMinWidth:'80',height:'full-170', url:'/api/services/app/SeatUser/GetPageResult', page:true, id:'SeatUser', limit:20, even: true,done:config.onTableDone}" @*lay-size="sm" *@>
+            <thead>
+                <tr>
+                    <th lay-data="{field:'name',edit:'text'}">姓名</th>
+                    <th lay-data="{field:'nickName' }">昵称</th>
+                    <th lay-data="{field:'avata',templet:'#avataTpl' }">头像</th>
+                    <th lay-data="{field:'orderNumber' }">订座次数</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script type="text/html" id="avataTpl">
+        <img src="{{d.avata}}" height="25"/>
+
+    </script>
+    <script>
+        config.ready = function () {
+            layui.table.on('edit', function (obj) {
+                func.runAsync(abp.services.app.seatOrder.setUserName(obj.data.openId, obj.value).done(function () {
+                    layer.msg("提交成功")
+                }))
+            })
+        }
+        config.onTableDone = function () {
+
+        }
+        config.refresh = function () {
+            
+        }        
+        function doSearch() {
+            var where = {};
+            var keyword = $("#keyword").val();
+            where.keyword = keyword;
+            layui.table.reload('SeatUser', {
+                where: where,
+                page:1
+            })
+
+            return false;
+        }
+        
+    </script>
+}

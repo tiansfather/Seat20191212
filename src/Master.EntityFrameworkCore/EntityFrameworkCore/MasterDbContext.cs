@@ -14,7 +14,6 @@ using Master.MultiTenancy;
 using Master.Notices;
 using Master.Organizations;
 using Master.Resources;
-using Master.Seats;
 using Master.Templates;
 using Microsoft.EntityFrameworkCore;
 using System;

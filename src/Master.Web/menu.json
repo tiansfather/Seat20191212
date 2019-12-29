@@ -20,6 +20,12 @@
         "url": "/Seats/"
       },
       {
+        "name": "Admin.Tenancy.SeatUsers",
+        "displayName": "订座用户管理",
+        "icon": "iconfont icon-shezhi1",
+        "url": "/Seats/User"
+      },
+      {
         "name": "Setting.Tenancy.BaseSetting",
         "displayName": "基本设置",
         "icon": "iconfont icon-shezhi1",

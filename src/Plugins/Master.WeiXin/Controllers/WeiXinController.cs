@@ -550,7 +550,28 @@ namespace Master.Controllers
         {
             return Json(AbpSession.ToUserIdentifier());
         }
+        public async Task<IActionResult> SeatTest(string code)
+        {
+            var settingCode = await SettingManager.GetSettingValueForTenantAsync("Code", 1);
+            if (settingCode != code)
+            {
+                return Error("此二维码已过期");
+            }
+            var openId = "111";
 
+            //如果系统中没有此用户则新增
+            var seatuser = new SeatUser()
+            {
+                OpenId = openId,
+                NickName = "nickname",
+                Avata = ""
+            };
+            ViewBag.isFirstTime = !await SeatUserManager.IsCreated(seatuser);
+
+            ViewBag.openId = openId;
+            //ViewBag.openId = "111";
+            return View("Seat");
+        }
         [WeUserFilter]
         [WeMustSubscribeFilter]
         public async Task<IActionResult> Seat(string code)

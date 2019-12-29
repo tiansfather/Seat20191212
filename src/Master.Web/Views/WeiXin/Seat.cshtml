@@ -1,10 +1,14 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿
+@{ 
+    ViewBag.Title = "Sartorius Hot Desk";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>赛多利斯（Sartorius）</title>
+    <title>Sartorius Hot Desk</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css" asp-append-version="true">
     <link rel="stylesheet" href="/css/aos.css" asp-append-version="true"/>
     
@@ -95,6 +99,7 @@
             el: "#app",
             data() {
                 return {
+                    isFirstTime:"@ViewBag.isFirstTime"=="True",
                     name:'',
                     seats: [],
                     openId: '@ViewBag.openId',
@@ -165,7 +170,15 @@
                 }
             },
             mounted() {
-               
+                //如果首次进入则需要输入姓名
+                if (this.isFirstTime) {
+                    var name = prompt("请输入您的姓名");
+                    if (name) {
+                        abp.services.app.seatOrder.setUserName(this.openId, name);
+                    } else {
+                        location.reload();
+                    }
+                }
 
 
                 abp.services.app.seatOrder.getSeatsStatus(this.openId).done(res => {
