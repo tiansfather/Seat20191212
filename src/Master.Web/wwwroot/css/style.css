@@ -83,11 +83,31 @@ input[type=checkbox] {
   transition: border-color ease 0.2s;
   cursor: pointer;background-image:url(../images/seat.jpg); background-size:100%
 }
-.check-box p{width:200px;color:#000; position:absolute; top:55%; left:50%; margin-left:-100px;text-align:center; display: opacity:1;-webkit-transition-property: all;
-          transition-property: all;
-  -webkit-transition-duration: .3s;
-          transition-duration: .3s;}
-.check-box li{ text-align:center;color:#000;position:absolute;font-size:62px; left:50%; margin-left:-31px; width:62px; letter-spacing:0px; top:20%}
+    .check-box p {
+        width: 200px;
+        color: #ffb81c;
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        margin-left: -100px;
+        text-align: center;
+        display: opacity:1;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+    }
+    .check-box li {
+        text-align: center;
+        color: #ffb81c;
+        position: absolute;
+        font-size: 62px;
+        left: 50%;
+        margin-left: -31px;
+        width: 62px;
+        letter-spacing: 0px;
+        top: 20%
+    }
 .check-box p1{ width:200px;color:#ffb81c; position:absolute; top:55%;left:50%; margin-left:-100px; text-align:center; opacity:0;-webkit-transition-property: all;
           transition-property: all;
   -webkit-transition-duration: .3s;

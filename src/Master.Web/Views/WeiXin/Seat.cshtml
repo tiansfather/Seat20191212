@@ -1,92 +1,97 @@
 ﻿
-@{ 
+@{
     ViewBag.Title = "Sartorius Hot Desk";
 }
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no" />
+@section styles{
+    <link href="/css/style.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/aos.css" asp-append-version="true" />
+    <style>
+        .check-box p2 {
+            width: 200px;
+            color: #ffb81c;
+            position: absolute;
+            margin: 2% 85%;
+            text-align: center;
+            opacity: 0;
+            width: 20px;
+            -webkit-transition-property: all;
+            transition-property: all;
+            -webkit-transition-duration: .3s;
+            transition-duration: .3s;
+        }
+    </style>
+}
+<div class="contain" id="app" v-cloak=v-cloak>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Sartorius Hot Desk</title>
-    <link href="/css/style.css" rel="stylesheet" type="text/css" asp-append-version="true">
-    <link rel="stylesheet" href="/css/aos.css" asp-append-version="true"/>
-    
-</head>
-<body>
-    <div class="contain" id="app" v-cloak>
-
-        <div class="nav">
-            <a class="title" href="#">Station booking</a>
-            <div class="date">@DateTime.Now.ToString("yyyy-MM-dd")</div>
-            <div class="clear"></div>
-        </div>
-
-        <div class="notice">
-            请选择您要预约的座位：<br />
-            Free为空位，Occupied为已占座位，再次点击可取消定位。
-        </div>
-
-        <div class="table" >
-            <template v-for="(item,index) in seats">
-                <template v-if="item.status==0">
-                    <input type="checkbox" :id="'t'+item.seatNumber" disabled="disabled"/>
-                    <label :for="'t'+item.seatNumber" class="check-box" @@click="doBook(item)">
-                        <p style="top:65%">Free</p>
-                        <p1>My Booking</p1>
-
-                        <li>{{item.seatNumber}}</li>
-                        <img src="/images/yinf1.png" width="100%" />
-                    </label>
-                </template>
-                <template v-if="item.status==1">
-                    <input type="checkbox" :id="'t'+item.seatNumber" checked="checked" disabled="disabled"/>
-                    <label :for="'t'+item.seatNumber" class="check-box" @@click="doBook(item)">
-                        <p>Free</p>
-                        <p1>My Booking</p1>
-
-                        <li>{{item.seatNumber}}</li>
-                        <img src="/images/yinf1.png" width="100%" />
-                    </label>
-                </template>
-                <template v-if="item.status==-1">
-                    <input type="checkbox1" :id="'t'+item.seatNumber" disabled= disabled />
-                    <label :for="'t'+item.seatNumber" class="check-box1">
-                        <p style="top:65%">Occupied</p>
-                        <li>{{item.seatNumber}}</li>
-                        <img src="/images/yinf1.png" width="100%" />
-                    </label>
-                </template>
-            </template>
-        </div>
-
+    <div class="nav">
+        <a class="title" href="#">Station booking</a>
+        <div class="date">@DateTime.Now.ToString("yyyy-MM-dd")</div>
         <div class="clear"></div>
-        <!--效果html开始-->
-        @*<nav class="main_nav">
+    </div>
+
+    <div class="notice">
+        请选择您要预约的座位：<br />
+        Free为空位，Occupied为已占座位，再次点击可取消定位。
+    </div>
+
+    <div class="table">
+        <template v-for="(item,index) in seats">
+            <template v-if="item.status==0">
+                <input type="checkbox" :id="'t'+item.seatNumber" disabled="disabled" />
+                <label :for="'t'+item.seatNumber" class="check-box" @@click="doBook(item)">
+                    <p style="top:65%">Free</p>
+                    <p1>My Booking</p1>
+
+                    <li>{{item.seatNumber}}</li>
+                    <img src="/images/yinf1.png" width="100%" />
+                </label>
+            </template>
+            <template v-if="item.status==1">
+                <input type="checkbox" :id="'t'+item.seatNumber" checked="checked" disabled="disabled" />
+                <label :for="'t'+item.seatNumber" class="check-box" @@click="doBook(item)">
+                    <p>Free</p>
+                    <p1>My Booking</p1>
+                    <p2><img src="/images/chose.png" width="100%" /></p2>
+                    <li>{{item.seatNumber}}</li>
+                    <img src="/images/yinf1.png" width="100%" />
+                </label>
+            </template>
+            <template v-if="item.status==-1">
+                <input type="checkbox1" :id="'t'+item.seatNumber" disabled=disabled disabled=disabled disabled=disabled disabled=disabled disabled=disabled disabled=disabled disabled=disabled disabled=disabled />
+                <label :for="'t'+item.seatNumber" class="check-box1">
+                    <p style="top:65%">Occupied</p>
+                    <li>{{item.seatNumber}}</li>
+                    <img src="/images/yinf1.png" width="100%" />
+                </label>
+            </template>
+        </template>
+    </div>
+
+    <div class="clear"></div>
+    <!--效果html开始-->
+    @*<nav class="main_nav">
             <ul>
                 <li><a class="cd-signin" href="#0">confirm</a></li>
             </ul>
         </nav>*@
 
-        <div class="cd-user-modal">
-            <div class="cd-user-modal-container">
-                <li class="confirm">
-                    {{currentSeat.status==0?'确认定下此座位?':'确认取消此座位?'}}
-                </li>
-                <div id="cd-login">
-                    <a class="button" @@click="doSubmit(currentSeat)">确 认</a><a class="button" style="background:#ccc" @@click='hideDlg'>取 消</a>
-                    <div class="clear"></div>
-                </div>
+    <div class="cd-user-modal">
+        <div class="cd-user-modal-container">
+            <li class="confirm">
+                {{currentSeat.status==0?'确认定下此座位?':'确认取消此座位?'}}
+            </li>
+            <div id="cd-login">
+                <a class="button" @@click="doSubmit(currentSeat)">确 认</a><a class="button" style="background:#ccc" @@click='hideDlg'>取 消</a>
+                <div class="clear"></div>
             </div>
         </div>
-        <!--效果html结束-->
-        <div class="clear"></div>
-
-
     </div>
-    <script src="~/view-resources/Views/_Bundles/base.min.js" asp-append-version="true"></script>
-    <script src="~/view-resources/Views/_Bundles/abp.min.js" asp-append-version="true"></script>
-    <script src="~/assets/js/global.js" asp-append-version="true"></script>
+    <!--效果html结束-->
+    <div class="clear"></div>
+
+
+</div>
+@section scripts{
     <script>
         var $form_modal = $('.cd-user-modal'),
             $form_login = $form_modal.find('#cd-login'),
@@ -119,7 +124,7 @@
                     Vue.nextTick(function () {
                         $(".cd-user-modal").addClass("is-visible");
                     })
-                    
+
                     //if (seat.status==0) {
                     //    layer.confirm("确认定下此座位?", {title:null,closeBtn:null,btnAlign:'c'}, function () {
                     //        layer.closeAll();
@@ -197,5 +202,4 @@
         })
 
     </script>
-</body>
-</html>
+}
