@@ -16,7 +16,7 @@ namespace Master.Seats
             var query = from seatOrder in Repository.GetAll()
                         join seatUser in Resolve<SeatUserManager>().GetAll() on seatOrder.OrderOpenId equals seatUser.OpenId
                         where seatOrder.Year == year && seatOrder.Month == month
-                        select new { seatOrder.SeatNumber, seatOrder.Day, seatUser.Name };
+                        select new { seatOrder.SeatNumber, seatOrder.Day, seatUser.Name,seatUser.NickName };
 
             var seatOrders = await query.ToListAsync();
 
@@ -26,7 +26,7 @@ namespace Master.Seats
 
             return seats.Select(o =>
             {
-                var occupiedDays = seatOrders.Where(s => o.SeatNumber == s.SeatNumber).Select(s => new { s.Day,s.Name });
+                var occupiedDays = seatOrders.Where(s => o.SeatNumber == s.SeatNumber).Select(s => new { s.Day,Name=!string.IsNullOrEmpty(s.Name)?s.Name:s.NickName });
                 return new
                 {
                     o.SeatNumber,

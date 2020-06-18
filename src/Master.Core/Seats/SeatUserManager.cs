@@ -10,12 +10,16 @@ namespace Master
 {
     public class SeatUserManager : DomainServiceBase<SeatUser, int>
     {
-        public async Task<bool> IsCreated(SeatUser seatuser)
+        public async Task<bool> IsNameSet(SeatUser seatuser)
         {
             var oriUser = await GetByOpenId(seatuser.OpenId);
             if (oriUser == null)
             {
                 await InsertAsync(seatuser);
+                return false;
+            }
+            else if (string.IsNullOrWhiteSpace(oriUser.Name))
+            {
                 return false;
             }
             else

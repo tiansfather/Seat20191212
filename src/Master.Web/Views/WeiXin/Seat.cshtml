@@ -178,7 +178,7 @@
                 //如果首次进入则需要输入姓名
                 if (this.isFirstTime) {
                     var name = prompt("请输入您的姓名");
-                    if (name) {
+                    if (name.trim()) {
                         abp.services.app.seatOrder.setUserName(this.openId, name);
                     } else {
                         location.reload();

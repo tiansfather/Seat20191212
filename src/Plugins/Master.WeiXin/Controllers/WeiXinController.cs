@@ -566,7 +566,7 @@ namespace Master.Controllers
                 NickName = "nickname",
                 Avata = ""
             };
-            ViewBag.isFirstTime = !await SeatUserManager.IsCreated(seatuser);
+            ViewBag.isFirstTime = !await SeatUserManager.IsNameSet(seatuser);
 
             ViewBag.openId = openId;
             //ViewBag.openId = "111";
@@ -592,7 +592,7 @@ namespace Master.Controllers
                 NickName = weuser.nickname,
                 Avata = weuser.headimgurl
             };
-            ViewBag.isFirstTime = !await SeatUserManager.IsCreated(seatuser);
+            ViewBag.isFirstTime = !await SeatUserManager.IsNameSet(seatuser);
 
             ViewBag.openId = openId;
             //ViewBag.openId = "111";
